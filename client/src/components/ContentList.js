@@ -2,7 +2,7 @@ import React from 'react';
 import './ContentList.scss';
 import img1 from '../assets/content-images/poster.jpg';
 
-function ContentList() {
+function ContentList(props) {
     const content = [
         { "id": 1, "poster": img1, "title": "Interstellar (2014)", "genre": "sci-fi", "shortDescription": "Interstellar chronicles the adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conquer the vast distances involved in an interstellar voyage." },
         { "id": 2, "poster": img1, "title": "Interstellar (2014)", "genre": "sci-fi", "shortDescription": "Interstellar chronicles the adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conquer the vast distances involved in an interstellar voyage." },
@@ -10,9 +10,11 @@ function ContentList() {
         { "id": 4, "poster": img1, "title": "Interstellar (2014)", "genre": "sci-fi", "shortDescription": "Interstellar chronicles the adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conquer the vast distances involved in an interstellar voyage." }
     ];
 
+    // const aa = [...props.value];
+
 
     return (
-        <section className="flex-col-10">
+        <>
             {content.map(item =>
                 <article key={item.id} className="content__item clearfix">
                     <div className="content__poster">
@@ -24,7 +26,7 @@ function ContentList() {
                                 <a href="#movie" className="content__title-link">{item.title}</a>
                             </h2>
                         </header>
-                        <p>Genre: <span className="aqua">{item.genre}</span></p>
+                        <p>Genre: <span>{item.genre}</span></p>
                         <div className="rating">
                             <div className="rating__stars">
                                 <div className="rating__stars-bg"></div>
@@ -37,7 +39,7 @@ function ContentList() {
                     </div>
                 </article>
             )}
-        </section>
+        </>
     );
 }
 
