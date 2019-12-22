@@ -1,5 +1,7 @@
 .header {
     width: 100%;
+    background-color:rgba(0,0,0,0.5);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
 }
 
 .logo {
@@ -71,24 +73,15 @@
 
         &:hover {
             background-color: rgba(255,255,255,0.2);
+            color: #ffc000;
         }
-    }
-}
-
-.welcome-user {
-    color: #fff;
-    padding: 10px 20px 0 20px;
-    text-transform: none;
-
-    @media all and (max-width: 992px) {
-        padding: 10px 0 10px 0;
     }
 }
 
 .caret-nav::after {
     content: "";
     display: block;
-    border-top: 5px solid #ffffff;
+    border-top: 5px solid #fff;
     border-right: 5px solid transparent;
     border-left: 5px solid transparent;
     position: absolute;
@@ -101,7 +94,7 @@
 }
 
 .caret-nav:hover::after {
-    border-top: 5px solid #fff;
+    border-top: 5px solid #ffc000;
 }
 
 .toggle-nav {
@@ -133,12 +126,11 @@
         position: absolute;
         background-color: rgba(255,255,255,0.1);
         width: 200px;
-        z-index: 10;
+        z-index: 20;
 
         @media all and (max-width: 992px) {
             width: 100%;
             position: relative;
-            padding: 0 0 15px 0;
         }
     }
 
@@ -147,12 +139,16 @@
         padding: 10px;
         background-color: rgba(255,255,255,0.1);
         color: #fff;
+
         &:hover {
             background-color: rgba(255,255,255,0.2);
+            color: #ffc000;
         }
     }
 
     &:hover .dropdown__box {
         display: block;
+        background-image: url(/static/media/bg.7ff31e4e.jpg);
+        background-position: -1244px -60px;
     }
 }

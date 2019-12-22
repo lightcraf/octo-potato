@@ -12,11 +12,8 @@ body {
         sans-serif;
     font-size: 16px;
     // font-family: Verdana, Geneva, sans-serif;
-    // background: #000 url('../assets/bg.jpg') center top no-repeat fixed;
-    background-image: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url('../assets/bg.jpg');
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-attachment: fixed;
+    background: #000 url('../assets/bg.jpg') center top no-repeat fixed;
+    // background-image: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url('../assets/bg.jpg');
     color: #fff;
 }
 
@@ -33,6 +30,7 @@ ul {
 .flex-row {
     display: flex;
     flex-wrap: wrap;
+
     @media all and (max-width: 960px) {
         flex-direction: column;
     }
@@ -51,7 +49,23 @@ ul {
 .flex-col-11 {flex: 0 0 91.66%;}
 .flex-col-12 {flex: 0 0 100%;}
 
+.main {
+    background-color: rgba(0,0,0,0.7);
+}
+
 .container {
-    width: 992px;
+    max-width: 1400px;
     margin: 0 auto;
+}
+
+.img-responsive {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
 }
