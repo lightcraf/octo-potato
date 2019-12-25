@@ -15,7 +15,7 @@ function ContentMenu(props) {
         const type = target.getAttribute("data-type");
         const genre = target.getAttribute("data-genre");
 
-        if (target.nodeName !== "A" || type === null) {
+        if (target.nodeName.toUpperCase() !== "A" || type === null) {
             return;
         }
 
@@ -23,8 +23,29 @@ function ContentMenu(props) {
     }
 
     function handleSort(e) {
+        const target = e.target;
+
+        if (target.nodeName.toUpperCase() !== "OPTION") {
+            return;
+        }
         console.log(e.target.value);
         props.sortContent(e.target.value);
+    }
+
+    function handleSearch(e) {
+            const childNode =  e.currentTarget.childNodes; 
+            let searchValue = "";
+            let searchIn = "";
+      
+            for (let i = 0; i < childNode.length; i++) { 
+                if (childNode[i].id == "search-content") {
+                    searchValue = childNode[i].value;
+                } else if (childNode[i].checked) {
+                    searchIn = childNode[i].value;
+                }
+            } 
+    
+        props.searchContent(searchValue, searchIn);
     }
 
     return (
@@ -85,26 +106,29 @@ function ContentMenu(props) {
                 </li>
             </ul>
 
-            <div className="search" role="search">
+            <div className="search" role="search" onChange={(e) => handleSearch(e)}>
                 <label htmlFor="search-content" className="hide-label">Search</label>
                 <input type="search" id="search-content" placeholder="Search" title="Search" /><br />
 
-                <input id="search-title" type="radio" name="search" value="title" />
+                <input id="search-title" type="radio" name="search-in" value="title" />
                 <label htmlFor="search-title"><span></span>in title</label><br />
 
-                <input id="search-description" type="radio" name="search" value="description" />
+                <input id="search-description" type="radio" name="search-in" value="description" />
                 <label htmlFor="search-description"><span></span>in description</label><br />
 
-                <input id="search-everywhere" type="radio" name="search" value="everywhere" defaultChecked />
+                <input id="search-everywhere" type="radio" name="search-in" value="everywhere" defaultChecked />
                 <label htmlFor="search-everywhere"><span></span>everywhere</label>
             </div>
 
             <div className="sort-content" role="search">
                 Sort by <select className="sort-content__select" onClick={(e) => handleSort(e)}>
-                    <option value=""></option>
-                    <option value="name">Name</option>
-                    <option value="rating">Rating</option>
-                    <option value="votes">Votes</option>
+                    <option value="default"></option>
+                    <option value="title-asc">Title (A - Z)</option>
+                    <option value="title-desc">Title (Z - A)</option>
+                    <option value="rating-asc">Rating (Low > High)</option>
+                    <option value="rating-desc">Rating (High > Low)</option>
+                    <option value="votes-asc">Votes (Low > High)</option>
+                    <option value="votes-desc">Votes (High > Low)</option>
                 </select>
             </div>
             <a href="#content" className="upload-link">Upload</a>
