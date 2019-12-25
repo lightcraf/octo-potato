@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import './ContentMenu.scss';
+import React, { useState } from "react";
+import "./ContentMenu.scss";
 
 function ContentMenu(props) {
     const [hidden, setHidden] = useState([false, false]);
@@ -10,8 +10,8 @@ function ContentMenu(props) {
         setHidden(currentItem);
     }
 
-    function handleFilter(e) {
-        const target = e.target;
+    function handleFilter(event) {
+        const target = event.target;
         const type = target.getAttribute("data-type");
         const genre = target.getAttribute("data-genre");
 
@@ -22,23 +22,23 @@ function ContentMenu(props) {
         props.filterContent(type, genre);
     }
 
-    function handleSort(e) {
-        const target = e.target;
+    function handleSort(event) {
+        const target = event.target;
 
         if (target.nodeName.toUpperCase() !== "OPTION") {
             return;
         }
-        console.log(e.target.value);
-        props.sortContent(e.target.value);
+
+        props.sortContent(event.target.value);
     }
 
-    function handleSearch(e) {
-            const childNode =  e.currentTarget.childNodes; 
+    function handleSearch(event) {
+            const childNode =  event.currentTarget.childNodes; 
             let searchValue = "";
             let searchIn = "";
       
             for (let i = 0; i < childNode.length; i++) { 
-                if (childNode[i].id == "search-content") {
+                if (childNode[i].id === "search-content") {
                     searchValue = childNode[i].value;
                 } else if (childNode[i].checked) {
                     searchIn = childNode[i].value;
@@ -49,7 +49,7 @@ function ContentMenu(props) {
     }
 
     return (
-        <nav className="left-menu-wrapper" onClick={(e) => handleFilter(e)}>
+        <nav className="left-menu-wrapper" onClick={(event) => handleFilter(event)}>
             <p>Menu</p>
             <ul className="left-menu">
                 <li className="left-menu__item">
@@ -57,7 +57,7 @@ function ContentMenu(props) {
                 </li>
                 <li className="left-menu__item">
                     <a href="#content"
-                        className={'left-menu__link ' + (hidden[0] ? "caret-rotate" : "caret")}
+                        className={"left-menu__link " + (hidden[0] ? "caret-rotate" : "caret")}
                         aria-expanded="false"
                         aria-controls="collapsible-0"
                         onClick={() => toggleFilter(0)}>Movies</a>
@@ -83,7 +83,7 @@ function ContentMenu(props) {
                 </li>
                 <li className="left-menu__item">
                     <a href="#content"
-                        className={'left-menu__link ' + (hidden[1] ? "caret-rotate" : "caret")}
+                        className={"left-menu__link " + (hidden[1] ? "caret-rotate" : "caret")}
                         aria-expanded="false"
                         aria-controls="collapsible-1"
                         onClick={() => toggleFilter(1)}>Books</a>
@@ -106,7 +106,7 @@ function ContentMenu(props) {
                 </li>
             </ul>
 
-            <div className="search" role="search" onChange={(e) => handleSearch(e)}>
+            <div className="search" role="search" onChange={(event) => handleSearch(event)}>
                 <label htmlFor="search-content" className="hide-label">Search</label>
                 <input type="search" id="search-content" placeholder="Search" title="Search" /><br />
 
@@ -121,8 +121,8 @@ function ContentMenu(props) {
             </div>
 
             <div className="sort-content" role="search">
-                Sort by <select className="sort-content__select" onClick={(e) => handleSort(e)}>
-                    <option value="default"></option>
+                Sort by <select className="sort-content__select" defaultValue={"default"} onClick={(event) => handleSort(event)}>
+                    <option value="default" disabled hidden></option>
                     <option value="title-asc">Title (A - Z)</option>
                     <option value="title-desc">Title (Z - A)</option>
                     <option value="rating-asc">Rating (Low > High)</option>

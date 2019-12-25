@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import './Slider.scss';
-import slide_1 from '../assets/avengers.jpg';
-import slide_2 from '../assets/Lord of the rings.jpg';
-import slide_3 from '../assets/1267865.jpg';
-import slide_4 from '../assets/Interstellar.jpg';
+import React, { useState, useEffect } from "react";
+import "./Slider.scss";
+import slide_1 from "../assets/avengers.jpg";
+import slide_2 from "../assets/Lord of the rings.jpg";
+import slide_3 from "../assets/1267865.jpg";
+import slide_4 from "../assets/Interstellar.jpg";
 
 function Slider() {
     const [slideIndex, setSlideIndex] = useState(1);
@@ -51,9 +51,9 @@ function Slider() {
             setHeight(getSize());
         }
  
-        window.addEventListener('resize', handleResize);
+        window.addEventListener("resize", handleResize);
 
-        return () => window.removeEventListener('resize', handleResize);
+        return () => window.removeEventListener("resize", handleResize);
     }, []);
 
     return (

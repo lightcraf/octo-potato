@@ -1,5 +1,6 @@
-import React from 'react';
-import './ContentList.scss';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./ContentList.scss";
 
 function ContentList(props) {
     console.log(props.content);
@@ -13,7 +14,7 @@ function ContentList(props) {
                     <div className="content__description-wrapper">
                         <header>
                             <h2 className="content__title">
-                                <a href="#movie" className="content__title-link">{item.title}</a>
+                                <Link to={"/content/" + item.id} className="content__title-link">{item.title}</Link>
                             </h2>
                         </header>
                         <p>Genre: <span>{item.genre}</span></p>

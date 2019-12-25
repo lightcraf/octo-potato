@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
-import './Home.scss';
-import Slider from './Slider';
+import React, { Fragment } from "react";
+import "./Home.scss";
+import Slider from "./Slider";
 
 function Home() {
     return (
@@ -48,7 +48,7 @@ function Home() {
             <section className="map-box">
                 <div className="flex-row">
                     <div className="flex-col-8">
-                        <div className="map" style={{width: '100%', minHeight: '450px'}}></div>
+                        <div className="map" style={{width: "100%", minHeight: "450px"}}></div>
                     </div>
                     <div className="flex-col-4">
                         <div className="company-contacts">

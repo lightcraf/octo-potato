@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import ContentMenu from './ContentMenu';
-import ContentList from './ContentList';
+import React, { useState, useEffect } from "react";
+import ContentMenu from "./ContentMenu";
+import ContentList from "./ContentList";
+import ContentPage from "./ContentPage";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useParams,
+    useRouteMatch
+  } from "react-router-dom";
 
 
 function Content() {
-    // const stringifyData = data => JSON.stringify(data, null, 2);
-    // const initialData = stringifyData({ data: null });
     const [data, setData] = useState([]);
     const [hasError, setError] = useState(false);
     const [filter, setFilter] = useState([]);
-
-
+    const [isLoaded, setLoad] = useState(false);
+    let { path, url } = useRouteMatch();
 
     const filterContent = (type, genre) => {
         let newContent = null;
@@ -44,10 +51,28 @@ function Content() {
             case "votes":
                 newContent = newContent.sort(compareValues("rating", "ratingCount", order));
                 break;
+            default: break;
         }
 
         setFilter(newContent);
     };
+
+    function compareValues(prop, nestedProp, order) {
+        return function (object1, object2) {
+            const propValue1 = nestedProp ? object1[prop][nestedProp] : object1[prop];
+            const propValue2 = nestedProp ? object2[prop][nestedProp] : object2[prop];
+            const value1 = (typeof propValue1 === "string" && isNaN(propValue2)) ? propValue1.toUpperCase() : Number(propValue1);
+            const value2 = (typeof propValue2 === "string" && isNaN(propValue2)) ? propValue2.toUpperCase() : Number(propValue2);
+
+            if (value1 < value2) {
+                return -1 * order;
+            } else if (value1 > value2) {
+                return 1 * order;
+            } else {
+                return 0;
+            }
+        };
+    }
 
     const searchContent = (searchValue, searchIn) => {
         console.log(searchValue, searchIn);
@@ -75,30 +100,11 @@ function Content() {
                     }
                 });
                 break;
-            default:
-                break;
+            default: break;
         }
 
         setFilter(newContent);
     };
-
-    function compareValues(prop, nestedProp, order) {
-        return function (object1, object2) {
-            const propValue1 = nestedProp ? object1[prop][nestedProp] : object1[prop];
-            const propValue2 = nestedProp ? object2[prop][nestedProp] : object2[prop];
-            const value1 = (typeof propValue1 === "string" && isNaN(propValue2)) ? propValue1.toUpperCase() : Number(propValue1);
-            const value2 = (typeof propValue2 === "string" && isNaN(propValue2)) ? propValue2.toUpperCase() : Number(propValue2);
-
-            if (value1 < value2) {
-                return -1 * order;
-            } else if (value1 > value2) {
-                return 1 * order;
-            } else {
-                return 0;
-            }
-        };
-    }
-
 
     useEffect(() => {
         const fetchData = () => {
@@ -108,24 +114,58 @@ function Content() {
                     console.log(data);
                     setData(data);
                     setFilter(data);
+                    setLoad(true);
                 })
                 .catch(err => setError(err));
         }
 
         fetchData();
     }, []);
-
-
+  
     return (
         <div className="content-list-page">
-            <div className="flex-row">
+            
+        {/* <Switch> */}
+            {data.map(item => 
+                <Route key={item.id} exact path={"/content/" + item.id}>
+                    {console.log(item.id)}
+                    <ContentPage data={data[item.id]} /> 
+                    {/* {isLoaded ? <ContentPage data={data[item.id]} /> : null} */}
+                </Route>
+            )}
+
+            <Route exact path={"/content"}>
+                <div className="flex-row">
+                    <div className="flex-col-2">
+                        <ContentMenu 
+                            filterContent={filterContent} 
+                            sortContent={sortContent} 
+                            searchContent={searchContent} />
+                    </div>
+                    <section className="flex-col-10">
+                        {filter.length === 0 ? <p>No search results found</p> : null}
+                        <ContentList content={filter} />
+                    </section>
+                </div>
+            </Route>
+        {/* </Switch> */}
+
+
+
+
+            {/* <div className="flex-row">
                 <div className="flex-col-2">
-                    <ContentMenu filterContent={filterContent} sortContent={sortContent} searchContent={searchContent} />
+                    <ContentMenu 
+                        filterContent={filterContent} 
+                        sortContent={sortContent} 
+                        searchContent={searchContent} />
                 </div>
                 <section className="flex-col-10">
+                    {filter.length === 0 ? <p>No search results found</p> : null}
                     <ContentList content={filter} />
                 </section>
-            </div>
+            </div> */}
+            {/* {isLoaded ? <ContentPage data={data[3]} /> : null} */}
         </div>
     );
 }

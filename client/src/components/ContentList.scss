@@ -36,6 +36,13 @@
     }
 }
 
+.content__description-wrapper {
+    @media all and (max-width: 992px) {
+        padding-top: 8px;
+        clear: both;
+    }
+}
+
 .content__description {
     color: gray;
 }

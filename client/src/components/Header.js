@@ -1,6 +1,7 @@
-﻿import React, {useState} from 'react';
-import './Header.scss';
-import logo from '../assets/logo.png';
+﻿import React, {useState} from "react";
+import { Link } from "react-router-dom";
+import "./Header.scss";
+import logo from "../assets/logo.png";
 
 
 function Header() {
@@ -14,7 +15,7 @@ function Header() {
         <header className="header">
             <nav className="top-nav">
                 <h1 className="logo">
-                    <a href="/"><img src={logo} className="logo__img" alt="site logo" /></a>
+                    <Link to="/"><img src={logo} className="logo__img" alt="site logo" /></Link>
                 </h1>
                 <div className="toggle-nav" onClick={toggleNav}>
                     <span>Toggle navigation</span>
@@ -31,16 +32,16 @@ function Header() {
                         </div>
                     </li>
                     <li className="top-nav__item">
-                        <a href="/" className="top-nav__link">Services</a>
+                        <Link to="/content" className="top-nav__link">Content</Link>
                     </li>
                     <li className="top-nav__item">
-                        <a href="/" className="top-nav__link">Contact</a>
+                        <a href="/" className="top-nav__link">Forum</a>
                     </li>
                     <li className="top-nav__item">
-                        <a href="/" className="top-nav__link">Sign In</a>
+                        <Link to="/signin" className="top-nav__link">Sign In</Link>
                     </li>
                     <li className="top-nav__item">
-                        <a href="/" className="top-nav__link">Sign Up</a>
+                        <Link to="/signup" className="top-nav__link">Sign Up</Link>
                     </li>
                 </ul>
             </nav>

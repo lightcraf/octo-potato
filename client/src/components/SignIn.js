@@ -1,7 +1,7 @@
-import React from 'react';
-import './Login.scss';
+import React from "react";
+import "./SignIn.scss";
 
-function Login() {
+function SignIn() {
     return (
         <form className="login-form">
             <label htmlFor="login-username">Username</label>
@@ -21,4 +21,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default SignIn;
