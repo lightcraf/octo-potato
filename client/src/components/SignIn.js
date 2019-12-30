@@ -7,13 +7,13 @@ function SignIn() {
             <label htmlFor="login-username">Username</label>
             <input type="text"
                 id="login-username"
-                className="login-form__input"
+                className="login-form__input form-control"
                 name="username" />
 
             <label htmlFor="login-password">Password <a href="/login" className="label-link">Forgot password?</a></label>
             <input type="password"
                 id="login-password"
-                className="login-form__input"
+                className="login-form__input form-control"
                 name="password" />
 
             <button type="submit" className="login-btn">Login</button>

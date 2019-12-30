@@ -1,0 +1,157 @@
+.upload-form {
+    max-width: 500px;
+    background-color: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.1);
+    margin: 80px auto;
+    padding: 16px;
+
+    &__input {
+        height: 36px;
+    }
+
+    &__select {
+        height: 36px;
+    }
+
+    &__description {
+        height: 120px;
+        resize: vertical;
+    }
+}
+
+.form-control {
+    width: 100%;
+    background-color: transparent;
+    color: #fff;
+    padding: 0 5px;
+    margin: 6px 0 24px 0;
+    border: 1px solid rgba(255,255,255,0.8);
+
+    &:hover, &:focus {
+        box-shadow: 0 0 5px #c6dee8;
+    }
+
+    &.error {
+        border-color: #e63f3f;
+    }
+}
+
+
+.upload-btn {
+    font-size: 18px;
+    font-weight: 600;
+    width: 100%;
+    letter-spacing: 1px;
+    background-color: #ffc923;
+    color: #000;
+    margin: 10px 0;
+    border: none;
+    padding: 12px 20px;
+    text-transform: uppercase;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #faa400;
+    }
+}
+
+// .close-upload {
+//     position: absolute;
+//     top: 10px;
+//     right: 25px;
+//     font-size: 36px;
+//     margin-left: 50px;
+//     color: white;
+// }
+
+// .close-upload:hover {
+//     color: #DE5E60;
+// }
+
+// .upload-form fieldset {
+//     border: 1px solid #AFAFAF;
+// }
+
+// .upload-form legend {
+//     padding: 0px 5px;
+// }
+
+// .upload-form label {
+//     display: block;
+// }
+
+// .upload-form input, .upload-form select, .upload-form textarea {
+//     width: 100%;
+//     background-color: #26292E;
+//     color: white;
+//     border: none;
+//     margin: 8px 0px 18px 0px;
+//     font-family: 'Titillium Web', sans-serif;
+// }
+
+// .upload-form optgroup {
+//     background-color: #2F3238;
+//     color: #DE5E60;
+// }
+
+// .upload-form option {
+//     background-color: #2F3238;
+//     color: white;
+// }
+
+// .upload-form input, .upload-form select {
+//     height: 36px;
+// }
+
+// .upload-form textarea {
+//     height: 120px;
+//     resize: vertical;
+// }
+
+// .upload-form-btn {
+//     background-color: #DE5E60;
+//     color: white;
+//     padding: 14px 20px;
+//     margin: 8px 0px;
+//     border: none;
+//     cursor: pointer;
+//     width: 48%;
+//     font-family: 'Titillium Web', sans-serif;
+// }
+
+// .upload-cancel-btn {
+//     float: right;
+// }
+
+// .upload-btn {
+//     float: left;
+// }
+
+//     .upload-btn:hover, .upload-cancel-btn:hover {
+//         background-color: #26292E;
+//     }
+
+//     .upload-btn:active, .upload-cancel-btn:active {
+//         background-color: white;
+//         color: black;
+//     }
+
+// .error-1, .error-2, .error-3 {
+//     display: none;
+//     color: red;
+// }
+
+// .upload-wrapper {
+//     height: 100%;
+//     width: 0;
+//     position: fixed;
+//     z-index: 25;
+//     top: 0;
+//     right: 0;
+//     background-color: #2F3238;
+//     overflow-x: hidden;
+//     -webkit-transition: 0.5s;
+//     -o-transition: 0.5s;
+//     transition: 0.5s;
+//     padding-top: 60px;
+// }

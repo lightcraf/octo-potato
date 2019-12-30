@@ -21,21 +21,23 @@ function Header() {
                     <span>Toggle navigation</span>
                 </div>
                 <ul className={showNav ? "top-nav__list active" : "top-nav__list"}>
-                    <li className="top-nav__item"><a href="/" className="top-nav__link">Home</a></li>
+                    <li className="top-nav__item">
+                        <Link to="/" className="top-nav__link">Home</Link>
+                    </li>
                     <li className="top-nav__item dropdown">
-                        <a href="/" className="top-nav__link caret-nav" aria-haspopup="true">Movies</a>
+                        <Link to="/content" className="top-nav__link caret-nav" aria-haspopup="true">Content</Link>
                         <div className="dropdown__box" aria-label="submenu">
-                            <a href="/" className="dropdown__link">Avangers</a>
-                            <a href="/" className="dropdown__link">Green Mile</a>
-                            <a href="/" className="dropdown__link">Destination</a>
-                            <a href="/" className="dropdown__link">John Wick</a>
+                            <a href="/" className="dropdown__link">Movies</a>
+                            <a href="/" className="dropdown__link">Books</a>
+                            <a href="/" className="dropdown__link">Coming soon</a>
+                            <a href="/" className="dropdown__link">Most popular</a>
                         </div>
                     </li>
                     <li className="top-nav__item">
-                        <Link to="/content" className="top-nav__link">Content</Link>
+                        <Link to="/" className="top-nav__link">Forum</Link>
                     </li>
                     <li className="top-nav__item">
-                        <a href="/" className="top-nav__link">Forum</a>
+                        <a href="/" className="top-nav__link">Contact</a>
                     </li>
                     <li className="top-nav__item">
                         <Link to="/signin" className="top-nav__link">Sign In</Link>

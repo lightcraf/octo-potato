@@ -15,7 +15,7 @@ function ContentMenu(props) {
         const type = target.getAttribute("data-type");
         const genre = target.getAttribute("data-genre");
 
-        if (target.nodeName.toUpperCase() !== "A" || type === null) {
+        if (target.nodeName.toUpperCase() !== "SPAN" || type === null) {
             return;
         }
 
@@ -39,7 +39,7 @@ function ContentMenu(props) {
       
             for (let i = 0; i < childNode.length; i++) { 
                 if (childNode[i].id === "search-content") {
-                    searchValue = childNode[i].value;
+                    searchValue = childNode[i].value.trim();
                 } else if (childNode[i].checked) {
                     searchIn = childNode[i].value;
                 }
@@ -53,54 +53,54 @@ function ContentMenu(props) {
             <p>Menu</p>
             <ul className="left-menu">
                 <li className="left-menu__item">
-                    <a href="#content" className="left-menu__link" data-type="all" data-genre="all">All content</a>
+                    <span className="left-menu__link" data-type="all" data-genre="all">All content</span>
                 </li>
                 <li className="left-menu__item">
-                    <a href="#content"
+                    <span
                         className={"left-menu__link " + (hidden[0] ? "caret-rotate" : "caret")}
                         aria-expanded="false"
                         aria-controls="collapsible-0"
-                        onClick={() => toggleFilter(0)}>Movies</a>
+                        onClick={() => toggleFilter(0)}>Movies</span>
                 </li>
                 <li className="left-menu__item">
                     <ul className={hidden[0] ? "left-menu-show" : "left-menu-hide"} id="collapsible-0" aria-hidden="true">
                         <li className="left-menu__subitem">
-                            <a href="#content" className="left-menu__link" data-type="video" data-genre="all">All</a>
+                            <span className="left-menu__link" data-type="video" data-genre="all">All</span>
                         </li>
                         <li className="left-menu__subitem">
-                            <a href="#content" className="left-menu__link" data-type="video" data-genre="action">Action</a>
+                            <span className="left-menu__link" data-type="video" data-genre="action">Action</span>
                         </li>
                         <li className="left-menu__subitem">
-                            <a href="#content" className="left-menu__link" data-type="video" data-genre="drama">Drama</a>
+                            <span className="left-menu__link" data-type="video" data-genre="drama">Drama</span>
                         </li>
                         <li className="left-menu__subitem">
-                            <a href="#content" className="left-menu__link" data-type="video" data-genre="sci-fi">Sci-fi</a>
+                            <span className="left-menu__link" data-type="video" data-genre="sci-fi">Sci-fi</span>
                         </li>
                         <li className="left-menu__subitem">
-                            <a href="#content" className="left-menu__link" data-type="video" data-genre="documentry">Documentry</a>
+                            <span className="left-menu__link" data-type="video" data-genre="documentry">Documentry</span>
                         </li>
                     </ul>
                 </li>
                 <li className="left-menu__item">
-                    <a href="#content"
+                    <span 
                         className={"left-menu__link " + (hidden[1] ? "caret-rotate" : "caret")}
                         aria-expanded="false"
                         aria-controls="collapsible-1"
-                        onClick={() => toggleFilter(1)}>Books</a>
+                        onClick={() => toggleFilter(1)}>Books</span>
                 </li>
                 <li className="left-menu__item">
                     <ul className={hidden[1] ? "left-menu-show" : "left-menu-hide"} id="collapsible-1" aria-hidden="true">
                         <li className="left-menu__subitem">
-                            <a href="#content" className="left-menu__link" data-type="book" data-genre="all">All</a>
+                            <span className="left-menu__link" data-type="book" data-genre="all">All</span>
                         </li>
                         <li className="left-menu__subitem">
-                            <a href="#content" className="left-menu__link" data-type="book" data-genre="history">History</a>
+                            <span className="left-menu__link" data-type="book" data-genre="history">History</span>
                         </li>
                         <li className="left-menu__subitem">
-                            <a href="#content" className="left-menu__link" data-type="book" data-genre="cookbook">Cookbooks</a>
+                            <span className="left-menu__link" data-type="book" data-genre="cookbook">Cookbooks</span>
                         </li>
                         <li className="left-menu__subitem">
-                            <a href="#content" className="left-menu__link" data-type="book" data-genre="romance">Romance</a>
+                            <span className="left-menu__link" data-type="book" data-genre="romance">Romance</span>
                         </li>
                     </ul>
                 </li>
@@ -131,7 +131,7 @@ function ContentMenu(props) {
                     <option value="votes-desc">Votes (High > Low)</option>
                 </select>
             </div>
-            <a href="#content" className="upload-link">Upload</a>
+            <a href="/upload" className="upload-link">Upload</a>
         </nav>
     );
 }

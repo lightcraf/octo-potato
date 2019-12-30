@@ -2,14 +2,7 @@ import React, { useState, useEffect } from "react";
 import ContentMenu from "./ContentMenu";
 import ContentList from "./ContentList";
 import ContentPage from "./ContentPage";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useParams,
-    useRouteMatch
-  } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 
 function Content() {
@@ -17,7 +10,7 @@ function Content() {
     const [hasError, setError] = useState(false);
     const [filter, setFilter] = useState([]);
     const [isLoaded, setLoad] = useState(false);
-    let { path, url } = useRouteMatch();
+    const [loading, setLoading] = useState(false);
 
     const filterContent = (type, genre) => {
         let newContent = null;
@@ -108,29 +101,36 @@ function Content() {
 
     useEffect(() => {
         const fetchData = () => {
-            fetch("content.json")
+            setLoading(true);
+            fetch("/content.json")
                 .then(res => res.json())
                 .then(data => {
+                    setLoading(false);
                     console.log(data);
                     setData(data);
                     setFilter(data);
                     setLoad(true);
                 })
                 .catch(err => setError(err));
-        }
+        };
 
         fetchData();
     }, []);
+
   
     return (
         <div className="content-list-page">
-            
-        {/* <Switch> */}
-            {data.map(item => 
+        <Switch>
+            {/* {isLoaded ? data.map(item => 
                 <Route key={item.id} exact path={"/content/" + item.id}>
                     {console.log(item.id)}
                     <ContentPage data={data[item.id]} /> 
-                    {/* {isLoaded ? <ContentPage data={data[item.id]} /> : null} */}
+                </Route>
+            ) : null} */}
+
+            {data.map(item => 
+                <Route key={item.id} exact path={"/content/" + item.id}>
+                    <ContentPage data={data[item.id]} /> 
                 </Route>
             )}
 
@@ -143,13 +143,11 @@ function Content() {
                             searchContent={searchContent} />
                     </div>
                     <section className="flex-col-10">
-                        {filter.length === 0 ? <p>No search results found</p> : null}
-                        <ContentList content={filter} />
+                        {loading ? <div className="spinner"></div> : <ContentList content={filter} />}
                     </section>
                 </div>
             </Route>
-        {/* </Switch> */}
-
+        </Switch>
 
 
 
@@ -165,6 +163,7 @@ function Content() {
                     <ContentList content={filter} />
                 </section>
             </div> */}
+
             {/* {isLoaded ? <ContentPage data={data[3]} /> : null} */}
         </div>
     );

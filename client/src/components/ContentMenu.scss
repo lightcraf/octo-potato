@@ -2,6 +2,21 @@
     margin-top: 30px;
 }
 
+.spinner {
+    width: 50px;
+    height: 50px;
+    margin: 50px auto;
+    border: 8px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 8px solid #ffc000;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 .left-menu-wrapper {
     max-height: 540px;
     overflow-y: auto;
@@ -36,6 +51,7 @@
         
         &:hover {
             color: #ffc000;
+            cursor: pointer;
         }
     }
 }
