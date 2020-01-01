@@ -51,6 +51,7 @@
     height: 26px;
     background-color: transparent;
     color: #fff;
+    font-size: 14px;
     margin-left: 10px;
     border: 1px solid rgba(255, 255, 255, 0.5);
     text-align: center;
@@ -67,5 +68,20 @@
 
     &:hover {
         background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    &:disabled:hover {
+        background-color: transparent;
+    }
+}
+
+.vote-message {
+    &--success {
+        font-size: 18px;
+        color: #ffc000;
+    }
+
+    &--error {
+        color: #e63f3f;
     }
 }

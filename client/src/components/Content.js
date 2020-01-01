@@ -101,8 +101,9 @@ function Content() {
 
     useEffect(() => {
         const fetchData = () => {
+            setError(false);
             setLoading(true);
-            fetch("/content.json")
+            fetch("/api/content")
                 .then(res => res.json())
                 .then(data => {
                     setLoading(false);
@@ -111,7 +112,7 @@ function Content() {
                     setFilter(data);
                     setLoad(true);
                 })
-                .catch(err => setError(err));
+                .catch(err => setError(true));
         };
 
         fetchData();
@@ -128,9 +129,9 @@ function Content() {
                 </Route>
             ) : null} */}
 
-            {data.map(item => 
+            {data.map((item, index) => 
                 <Route key={item.id} exact path={"/content/" + item.id}>
-                    <ContentPage data={data[item.id]} /> 
+                    <ContentPage data={data[index]} /> 
                 </Route>
             )}
 
@@ -143,6 +144,7 @@ function Content() {
                             searchContent={searchContent} />
                     </div>
                     <section className="flex-col-10">
+                        {hasError && <p>Something went wrong ...</p>}
                         {loading ? <div className="spinner"></div> : <ContentList content={filter} />}
                     </section>
                 </div>

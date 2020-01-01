@@ -2,10 +2,10 @@
 import { Switch, Route } from "react-router-dom";
 import Home from "./Home";
 import Content from "./Content";
+import ContentPage from "./ContentPage";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import Upload from "./Upload";
-// import ContentPage from "./ContentPage";
 // import ContentRouter from "./ContentRouter";
 
 function Main() {
@@ -18,9 +18,9 @@ function Main() {
                 <Route path="/content">
                     <Content />
                 </Route>
-                {/* <Route exact path="/content/:id">
+                <Route path="/content/:id">
                     <ContentPage />
-                </Route> */}
+                </Route>
                 <Route path="/signin">
                     <SignIn />
                 </Route>

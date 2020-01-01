@@ -57,7 +57,7 @@ function ContentList(props) {
                 {pageList.map(item =>
                     <article key={item.id} className="content__item clearfix">
                         <div className="content__poster">
-                            <img src={"content-images/" + item.images.url1} className="img-responsive" alt={item.title} />
+                            <img src={"content-images/" + item.poster} className="img-responsive" alt={item.title} />
                         </div>
                         <div className="content__description-wrapper">
                             <header>
@@ -71,10 +71,10 @@ function ContentList(props) {
                                 <div className="rating__stars">
                                     <div className="rating__stars-bg"></div>
                                     <div className="rating__stars-current"
-                                        style={{ width: (140 * Number(item.rating.ratingValue) / 10) + "px" }}></div>
+                                        style={{ width: (139 * (item.rating_sum/item.rating_count) / 10).toFixed() + "px" }}></div>
                                 </div>
-                                <div className="rating__value">{item.rating.ratingValue}/10</div>
-                                <p className="rating__votes">Votes: <span>{item.rating.ratingCount}</span></p>
+                                <div className="rating__value">{(item.rating_sum/item.rating_count).toFixed(1)}/10</div>
+                                <p className="rating__votes">Votes: <span>{item.rating_count}</span></p>
                             </div>
                             <p className="content__description">{item.description}</p>
                         </div>
