@@ -19,7 +19,7 @@
   "homepage": "https://github.com/lightcraf/octo-potato#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "multer": "^1.4.2",
+    "formidable": "^1.2.1",
     "sqlite3": "^4.1.1"
   },
   "devDependencies": {

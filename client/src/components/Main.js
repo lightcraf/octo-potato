@@ -5,8 +5,7 @@ import Content from "./Content";
 import ContentPage from "./ContentPage";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import Upload from "./Upload";
-// import ContentRouter from "./ContentRouter";
+import AddContent from "./AddContent";
 
 function Main() {
     return (
@@ -27,8 +26,8 @@ function Main() {
                 <Route path="/signup">
                     <SignUp />
                 </Route>
-                <Route path="/upload">
-                    <Upload />
+                <Route path="/add">
+                    <AddContent />
                 </Route>
             </Switch>
         </main>

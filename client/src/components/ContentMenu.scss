@@ -166,11 +166,12 @@
     }
 }
 
-.upload-link {
+.add-content-link {
     display: inline-block;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
     color: #ffc000;
+    text-transform: uppercase;
     margin-top: 25px;
 
     &:hover {

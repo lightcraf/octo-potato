@@ -131,7 +131,7 @@ function ContentMenu(props) {
                     <option value="votes-desc">Votes (High > Low)</option>
                 </select>
             </div>
-            <a href="/upload" className="upload-link">Upload</a>
+            <a href="/add" className="add-content-link">Add new</a>
         </nav>
     );
 }
