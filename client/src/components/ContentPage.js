@@ -53,7 +53,6 @@ function ContentPage(props) {
           })
             .then(res => res.json())
             .then(result => {
-                console.log(result);
                 if (result.voteError === true) {
                     setIsError(true)
                 } else {
@@ -64,20 +63,23 @@ function ContentPage(props) {
             .catch(err => setIsError(true));
     };
 
+    const ratingValue = data.rating_sum === 0 ? "0/10" : (data.rating_sum/data.rating_count).toFixed(1) + "/10";
+    const starsWidth = data.rating_sum === 0 ? "0px" : (139 * (data.rating_sum/data.rating_count) / 10).toFixed() + "px";
+
     return (
-        <div className="content__item clearfix">
+        <div className="content__item">
             <div className="thumbnail-wrapper">
                 <div className="thumb-large">
                     <img src={imgSrc || "/content-images/" + data.poster} className="thumb-large__img" alt={data.title} />
                 </div>
-                <ul onClick={handleThumbsGallery}>
-                    <li className="thumb-small">
+                <ul className="thumb-small" onClick={handleThumbsGallery}>
+                    <li className="thumb-small__item">
                         <img src={"/content-images/" + data.poster} className="thumb-small__img" alt={data.title} />
                     </li>
-                    <li className="thumb-small">
+                    <li className="thumb-small__item">
                         <img src={"/content-images/" + data.image_1} className="thumb-small__img" alt={data.title} />
                     </li>
-                    <li className="thumb-small">
+                    <li className="thumb-small__item">
                         <img src={"/content-images/" + data.image_2} className="thumb-small__img" alt={data.title} />
                     </li>
                 </ul>
@@ -94,9 +96,9 @@ function ContentPage(props) {
                     <div className="rating__stars">
                         <div className="rating__stars-bg"></div>
                         <div className="rating__stars-current"
-                            style={{ width: (139 * (data.rating_sum/data.rating_count) / 10).toFixed() + "px" }}></div>
+                            style={{ width: starsWidth }}></div>
                     </div>
-                    <div className="rating__value">{(data.rating_sum/data.rating_count).toFixed(1)}/10</div>
+                    <div className="rating__value">{ratingValue}</div>
                     <p className="rating__votes">Votes: <span>{data.rating_count}</span></p>
                 </div>
                 <p className="content__description">{data.description}</p>

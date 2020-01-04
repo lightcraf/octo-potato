@@ -36,21 +36,33 @@
     }
 }
 
+.add-content {
+    &-btn {
+        font-size: 18px;
+        font-weight: 600;
+        width: 100%;
+        letter-spacing: 1px;
+        background-color: #ffc923;
+        color: #000;
+        margin: 10px 0;
+        border: none;
+        padding: 12px 20px;
+        text-transform: uppercase;
+    
+        &:hover {
+            cursor: pointer;
+            background-color: #faa400;
+        }
+    }
 
-.add-content-btn {
-    font-size: 18px;
-    font-weight: 600;
-    width: 100%;
-    letter-spacing: 1px;
-    background-color: #ffc923;
-    color: #000;
-    margin: 10px 0;
-    border: none;
-    padding: 12px 20px;
-    text-transform: uppercase;
+    &-success {
+        font-size: 18px;
+        color: #ffc000;
+        text-align: center;
+    }
 
-    &:hover {
-        cursor: pointer;
-        background-color: #faa400;
+    &-error {
+        display: inline-block;
+        color: #e63f3f;
     }
 }

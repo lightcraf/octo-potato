@@ -3,19 +3,19 @@ import React from "react";
 function SignUp() {
     return (
         <form className="login-form">
-            <label htmlFor="signup-username">Name <span className="required-asterisk">Required</span></label>
+            <label htmlFor="signup-username">Name</label>
             <input type="text"
                 id="signup-username"
                 className="login-form__input form-control"
                 name="username" />
 
-            <label htmlFor="signup-email">Email <span className="required-asterisk">Required</span></label>
+            <label htmlFor="signup-email">Email</label>
             <input type="email"
                 id="signup-email"
                 className="login-form__input form-control"
                 name="email" />
 
-            <label htmlFor="signup-password">Password <span className="required-asterisk">Required</span></label>
+            <label htmlFor="signup-password">Password</label>
             <input type="password"
                 id="signup-password"
                 className="login-form__input form-control"

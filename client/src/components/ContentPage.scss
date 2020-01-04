@@ -1,10 +1,8 @@
 .thumbnail-wrapper {
     max-width: 300px;
-    float: left;
     margin-right: 20px;
 
     @media all and (max-width: 992px) {
-        float: none;
         margin: 0 auto;
     }
 }
@@ -14,6 +12,11 @@
     height: 300px;
     position: relative;
     margin: 10px 0;
+
+    @media all and (max-width: 576px) {
+        width: 264px;
+        height: 264px;
+    }
 
     &__img {
         max-height: 100%;
@@ -28,13 +31,21 @@
 }
 
 .thumb-small {
-    width: 96px;
-    height: 96px;
-    position: relative;
-    float: left;
-    border: 1px solid #afafaf;
-    overflow: hidden;
-    margin: 2px;
+    display: flex;
+    justify-content: space-between;
+
+    &__item {
+        width: 96px;
+        height: 96px;
+        position: relative;
+        border: 1px solid #afafaf;
+        overflow: hidden;
+
+        @media all and (max-width: 576px) {
+            width: 86px;
+            height: 86px;
+        }
+    }
 
     &__img {
         height: 96px;
@@ -43,6 +54,10 @@
         right: 0;
         margin: auto;
         cursor: pointer;
+
+        @media all and (max-width: 576px) {
+            height: 86px;
+        }
     }
 }
 

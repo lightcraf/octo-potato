@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
 import "./ContentList.scss";
 import Pagination from "./Pagination";
@@ -53,16 +53,18 @@ function ContentList(props) {
         return (<p>No search results found</p>);
     } else {
         return (
-            <>
-                {pageList.map(item =>
-                    <article key={item.id} className="content__item clearfix">
+            <Fragment>
+                {pageList.map(item => {
+                    let ratingValue = item.rating_sum === 0 ? "0/10" : (item.rating_sum/item.rating_count).toFixed(1) + "/10";
+                    let starsWidth = item.rating_sum === 0 ? "0px" : (139 * (item.rating_sum/item.rating_count) / 10).toFixed() + "px";
+
+                    return (<article key={item.id} className="content__item">
                         <div className="content__poster">
                             <img src={"content-images/" + item.poster} className="img-responsive" alt={item.title} />
                         </div>
                         <div className="content__description-wrapper">
                             <header>
                                 <h2 className="content__title">
-                                    {/* <Link to={`${url}/${item.id}`} className="content__title-link">{item.title}</Link> */}
                                     <Link to={"/content/" + item.id} className="content__title-link">{item.title}</Link>
                                 </h2>
                             </header>
@@ -71,20 +73,20 @@ function ContentList(props) {
                                 <div className="rating__stars">
                                     <div className="rating__stars-bg"></div>
                                     <div className="rating__stars-current"
-                                        style={{ width: (139 * (item.rating_sum/item.rating_count) / 10).toFixed() + "px" }}></div>
+                                        style={{ width: starsWidth }}></div>
                                 </div>
-                                <div className="rating__value">{(item.rating_sum/item.rating_count).toFixed(1)}/10</div>
+                                <div className="rating__value">{ratingValue}</div>
                                 <p className="rating__votes">Votes: <span>{item.rating_count}</span></p>
                             </div>
                             <p className="content__description">{item.description}</p>
                         </div>
-                    </article>
-                )}
+                    </article>)
+                })}
                 <Pagination
                     currentPage={currentPage}
                     changePage={changePage}
                     totalPages={totalPages} />
-            </>
+            </Fragment>
         );
     }
 }
