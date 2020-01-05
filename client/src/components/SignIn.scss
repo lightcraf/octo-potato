@@ -24,6 +24,10 @@
 
     &.error {
         border-color: #e63f3f;
+
+        &:hover, &:focus {
+            box-shadow: 0 0 5px #ff8e8e;
+        }
     }
 }
 
@@ -61,6 +65,7 @@
 }
 
 .form-privacy {
+    display: inline-block;
     font-size: 14px;
     color: #fff;
 }
@@ -71,4 +76,10 @@
     &:hover {
         text-decoration: underline;
     }
+}
+
+.signup-error-message {
+    display: inline-block;
+    font-size: 14px;
+    color: #e63f3f;
 }

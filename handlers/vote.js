@@ -4,7 +4,6 @@ const db = new sqlite3.Database(DB_PATH);
 
 exports.vote = function (req, res) {
     const id = req.params["id"];
-    console.log(id);
     const rating = req.body.rating;
 
     if (!Number.isInteger(Number(rating))) {
@@ -13,11 +12,10 @@ exports.vote = function (req, res) {
         return res.send({ voteError: true });
     }
 
-
     function getRating() {
         const newRating = { ratingCount: 0, ratingSum: 0 }
         return new Promise((resolve, reject) => {
-            db.get(`SELECT rating_count, rating_sum FROM content WHERE id = ?`, [id], function (err, row) {
+            db.get("SELECT rating_count, rating_sum FROM content WHERE id = ?", [id], function (err, row) {
                 if (err) {
                     throw err;
                 }
@@ -34,7 +32,6 @@ exports.vote = function (req, res) {
                 if (err) {
                   reject(err);
                 }
-                console.log(newRating, newRating);
                 res.send(newRating);
               });
         });

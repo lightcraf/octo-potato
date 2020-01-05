@@ -19,7 +19,7 @@ exports.addContent = function (req, res) {
 
     form.parse(req);
     form.keepExtensions = true;
-    form.uploadDir = "./uploads";
+    form.uploadDir = "./client/public/content-images";
     form.maxFileSize = 5 * 1024 * 1024;
     form.maxFields = 6;
 
