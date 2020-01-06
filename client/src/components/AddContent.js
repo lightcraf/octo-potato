@@ -100,7 +100,7 @@ function AddContent() {
                             genreError: result.errors.genreError,
                             fileError: result.errors.fileError 
                         }));
-                    } else if (result.status === "ok") {
+                    } else if (result.status === 200) {
                         form.reset();
                         setFormSuccess(true);
                     }

@@ -1,0 +1,19 @@
+import React, { Fragment } from "react";
+import SignOut from "./SignOut";
+
+function UserGreating(props) {
+    const username = props.username;
+
+    return (
+        <Fragment>
+            <li className="top-nav__item">
+                <SignOut />
+            </li>
+            <li className="top-nav__item">
+                <div className="welcome-user">Welcome<div className="aqua">{username}</div></div>
+            </li>
+        </Fragment>
+    );
+}
+
+export default UserGreating;

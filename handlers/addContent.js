@@ -83,7 +83,7 @@ exports.addContent = function (req, res) {
                 if (err) {
                     console.log(err);
                 }
-                return res.send({status: "ok"});
+                return res.send({status: 200});
             });
         });
     });

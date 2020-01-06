@@ -1,14 +1,12 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 function SignUp() {
-    const initialState = {
-        username: "",
-        email: "",
-        password: ""
-    };
-    const [values, setValues] = useState(initialState);
+    const history = useHistory();
+    const [values, setValues] = useState({ username: "", email: "", password: "" });
     const [formErrors, setFormErrors] = useState({ 
         isNameValid: false, 
+        isNameValid2: true, 
         isEmailValid: false, 
         isPasswordValid: false 
     });
@@ -21,6 +19,7 @@ function SignUp() {
         const PASSWORD_PATTERN = /^.{6,}$/;
 
         setValues({ ...values, [name]: value });
+        setFormErrors( prevState => ({ ...prevState, isNameValid2: true }));
         setSubmitError(false);
 
         if (name === "username") {
@@ -60,8 +59,17 @@ function SignUp() {
             })
                 .then(res => res.json())
                 .then(result => {
-                    console.log(result);
-                    setValues({ ...initialState });
+                    if (result.hasOwnProperty("errors")) {
+                        setFormErrors( prevState => ({ 
+                            ...prevState, 
+                            isNameValid : result.errors.isNameValid, 
+                            isNameValid2 : result.errors.isNameValid2,
+                            isEmailValid: result.errors.isEmailValid,
+                            isPasswordValid: result.errors.isPasswordValid 
+                        }));
+                    } else if (result.status === 200) {
+                        history.push("/");
+                    }
                 })
                 .catch(err => console.log(err));
         } else {
@@ -110,8 +118,10 @@ function SignUp() {
                 onChange={handleInputChange} />
 
             {userNameClass ? <span className="signup-error-message">Username may only contain alphanumeric characters and must be between 2 and 16 characters long.</span> : null}
+            {formErrors.isNameValid2 ? null : <span className="signup-error-message">This username is already taken.</span>}
             {emailClass ? <span className="signup-error-message">Invalid email.</span> : null}
             {passwordClass ? <span className="signup-error-message">Password must be at least 6 characters.</span> : null}
+            
             <span className="form-privacy">
                 By creating an account you agree to our <a href="/" className="form-privacy-link">Terms & Privacy</a>.
             </span>

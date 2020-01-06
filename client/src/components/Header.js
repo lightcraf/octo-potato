@@ -1,10 +1,11 @@
-﻿import React, {useState} from "react";
+﻿import React, { useState, Fragment } from "react";
 import { Link } from "react-router-dom";
+import UserGreeting from "./UserGreeting";
 import "./Header.scss";
 import logo from "../assets/logo.png";
 
 
-function Header() {
+function Header(props) {
     const [showNav, setToggleNav] = useState(false);
 
     const toggleNav = () => {
@@ -39,12 +40,16 @@ function Header() {
                     <li className="top-nav__item">
                         <a href="/" className="top-nav__link">Contact</a>
                     </li>
-                    <li className="top-nav__item">
-                        <Link to="/signin" className="top-nav__link">Sign In</Link>
-                    </li>
-                    <li className="top-nav__item">
-                        <Link to="/signup" className="top-nav__link">Sign Up</Link>
-                    </li>
+                    {props.isLoggedIn ? <UserGreeting {...props} /> : (
+                        <Fragment>
+                            <li className="top-nav__item">
+                                <Link to="/signin" className="top-nav__link">Sign In</Link>
+                            </li>
+                            <li className="top-nav__item">
+                                <Link to="/signup" className="top-nav__link">Sign Up</Link>
+                            </li>
+                        </Fragment>
+                    )}
                 </ul>
             </nav>
         </header>
