@@ -13,7 +13,7 @@ exports.vote = function (req, res) {
     }
 
     function getRating() {
-        const newRating = { ratingCount: 0, ratingSum: 0 }
+        const newRating = { ratingCount: 0, ratingSum: 0, rating: 0 }
         return new Promise((resolve, reject) => {
             db.get("SELECT rating_count, rating_sum FROM content WHERE id = ?", [id], function (err, row) {
                 if (err) {
@@ -21,6 +21,7 @@ exports.vote = function (req, res) {
                 }
                 newRating.ratingCount = row.rating_count + 1;
                 newRating.ratingSum = row.rating_sum + rating;
+                newRating.rating = Number(((row.rating_sum + rating) / (row.rating_count + 1)).toFixed(1));
                 resolve(newRating);
             });
         });
@@ -28,7 +29,7 @@ exports.vote = function (req, res) {
 
     function updateRating(newRating) {
         return new Promise((resolve, reject) => {
-            db.run("UPDATE content SET rating_count = ?, rating_sum = ? WHERE id = ?", [newRating.ratingCount, newRating.ratingSum, id], function (err) {
+            db.run("UPDATE content SET rating_count = ?, rating_sum = ?, rating = ? WHERE id = ?", [newRating.ratingCount, newRating.ratingSum, newRating.rating, id], function (err) {
                 if (err) {
                   reject(err);
                 }

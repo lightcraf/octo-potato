@@ -1,5 +1,5 @@
 ﻿import React, { useState, useEffect, Fragment } from "react";
-import { Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Route, Redirect, useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import Home from "./Home";
@@ -8,6 +8,7 @@ import ContentPage from "./ContentPage";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import AddContent from "./AddContent";
+import NoMatch from "./NoMatch";
 
 function Main() {
     const location = useLocation();
@@ -15,19 +16,17 @@ function Main() {
     const [username, setUsername] = useState("");
 
     useEffect(() => {
-        const fetchData = () => {
-            fetch("/api/verify", {
-                credentials: "include"
+        fetch("/api/verify", {
+            credentials: "include"
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setIsAuthenticated(data.isLoggedIn);
+                setUsername(data.username);
             })
-                .then(res => res.json())
-                .then(data => {
-                    setIsAuthenticated(data.isLoggedIn);
-                    setUsername(data.username);
-                })
-                .catch(err => console.log(err));
-        };
+            .catch(err => console.log(err));
 
-        fetchData();
     }, [location.pathname]);
 
     return (
@@ -45,14 +44,16 @@ function Main() {
                         <ContentPage />
                     </Route>
                     <Route path="/signin">
-                        <SignIn />
+                        {isLoggedIn ? <Redirect to="/" /> : <SignIn />}
                     </Route>
                     <Route path="/signup">
-                        <SignUp />
+                        {isLoggedIn ? <Redirect to="/" /> : <SignUp />}
                     </Route>
                     <Route path="/add">
-                        {/* {isLoggedIn ? <AddContent /> : <Redirect to="/signin" />} */}
                         <AddContent />
+                    </Route>
+                    <Route path="*">
+                        <NoMatch />
                     </Route>
                 </Switch>
             </main>

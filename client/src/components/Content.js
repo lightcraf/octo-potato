@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { Switch, Route } from "react-router-dom";
 import ContentMenu from "./ContentMenu";
 import ContentList from "./ContentList";
 import ContentPage from "./ContentPage";
-import { Switch, Route } from "react-router-dom";
-
+import NoMatch from "./NoMatch";
 
 function Content() {
     const [data, setData] = useState([]);
     const [hasError, setError] = useState(false);
     const [filter, setFilter] = useState([]);
-    const [isLoaded, setLoad] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const filterContent = (type, genre) => {
@@ -17,13 +16,13 @@ function Content() {
         if (type === "all" && genre === "all") {
             setFilter(data);
         } else if (genre === "all") {
-            newContent = data.filter(i => {
-                return (i.type === type);
+            newContent = data.filter(item => {
+                return (item.type === type);
             });
             setFilter(newContent);
         } else {
-            newContent = data.filter(i => {
-                return (i.type === type && i.genre === genre);
+            newContent = data.filter(item => {
+                return (item.type === type && item.genre === genre);
             });
             setFilter(newContent);
         }
@@ -36,13 +35,13 @@ function Content() {
 
         switch (sortParameter) {
             case "title":
-                newContent = newContent.sort(compareValues("title", null, order));
+                newContent = newContent.sort(compareValues("title", order));
                 break;
             case "rating":
-                newContent = newContent.sort(compareValues("rating", "ratingValue", order));
+                newContent = newContent.sort(compareValues("rating", order));
                 break;
             case "votes":
-                newContent = newContent.sort(compareValues("rating", "ratingCount", order));
+                newContent = newContent.sort(compareValues("rating_count", order));
                 break;
             default: break;
         }
@@ -50,12 +49,10 @@ function Content() {
         setFilter(newContent);
     };
 
-    function compareValues(prop, nestedProp, order) {
+    function compareValues(propertyName, order) {
         return function (object1, object2) {
-            const propValue1 = nestedProp ? object1[prop][nestedProp] : object1[prop];
-            const propValue2 = nestedProp ? object2[prop][nestedProp] : object2[prop];
-            const value1 = (typeof propValue1 === "string" && isNaN(propValue2)) ? propValue1.toUpperCase() : Number(propValue1);
-            const value2 = (typeof propValue2 === "string" && isNaN(propValue2)) ? propValue2.toUpperCase() : Number(propValue2);
+            const value1 = (typeof object1[propertyName] === "string") ? object1[propertyName].toLowerCase() : object1[propertyName];
+            const value2 = (typeof object2[propertyName] === "string") ? object2[propertyName].toLowerCase() : object2[propertyName];
 
             if (value1 < value2) {
                 return -1 * order;
@@ -68,29 +65,21 @@ function Content() {
     }
 
     const searchContent = (searchValue, searchIn) => {
-        console.log(searchValue, searchIn);
-
-        const newContent = [];
+        let newContent = [];
         switch (searchIn) {
             case "everywhere":
-                data.forEach((item) => {
-                    if (item.title.toLowerCase().toString().indexOf(searchValue) !== -1 || item.description.toLowerCase().toString().indexOf(searchValue) !== -1) {
-                        newContent.push(item);
-                    }
+                newContent = data.filter(item => {
+                    return item.title.toLowerCase().includes(searchValue) || item.description.toLowerCase().includes(searchValue);
                 });
                 break;
             case "description":
-                data.forEach((item) => {
-                    if (item.description.toLowerCase().toString().indexOf(searchValue) !== -1) {
-                        newContent.push(item);
-                    }
+                newContent = data.filter(item => {
+                    return item.description.toLowerCase().includes(searchValue);
                 });
                 break;
             case "title":
-                data.forEach((item) => {
-                    if (item.title.toLowerCase().toString().indexOf(searchValue) !== -1) {
-                        newContent.push(item);
-                    }
+                newContent = data.filter(item => {
+                    return item.title.toLowerCase().includes(searchValue);
                 });
                 break;
             default: break;
@@ -110,7 +99,6 @@ function Content() {
                     console.log(data);
                     setData(data);
                     setFilter(data);
-                    setLoad(true);
                 })
                 .catch(err => setError(true));
         };
@@ -118,55 +106,34 @@ function Content() {
         fetchData();
     }, []);
 
-  
+
     return (
         <div className="content-list-page">
-        <Switch>
-            {/* {isLoaded ? data.map(item => 
-                <Route key={item.id} exact path={"/content/" + item.id}>
-                    {console.log(item.id)}
-                    <ContentPage data={data[item.id]} /> 
-                </Route>
-            ) : null} */}
+            <Switch>
+                {data.map((item, index) =>
+                    <Route key={item.id} exact path={"/content/" + item.id}>
+                        <ContentPage data={data[index]} />
+                    </Route>
+                )}
 
-            {data.map((item, index) => 
-                <Route key={item.id} exact path={"/content/" + item.id}>
-                    <ContentPage data={data[index]} /> 
-                </Route>
-            )}
-
-            <Route exact path={"/content"}>
-                <div className="flex-row">
-                    <div className="flex-col-2">
-                        <ContentMenu 
-                            filterContent={filterContent} 
-                            sortContent={sortContent} 
-                            searchContent={searchContent} />
+                <Route exact path={"/content"}>
+                    <div className="flex-row">
+                        <div className="flex-col-2">
+                            <ContentMenu
+                                filterContent={filterContent}
+                                sortContent={sortContent}
+                                searchContent={searchContent} />
+                        </div>
+                        <section className="flex-col-10">
+                            {hasError && <p>Something went wrong ...</p>}
+                            {loading ? <div className="spinner"></div> : <ContentList content={filter} />}
+                        </section>
                     </div>
-                    <section className="flex-col-10">
-                        {hasError && <p>Something went wrong ...</p>}
-                        {loading ? <div className="spinner"></div> : <ContentList content={filter} />}
-                    </section>
-                </div>
-            </Route>
-        </Switch>
-
-
-
-            {/* <div className="flex-row">
-                <div className="flex-col-2">
-                    <ContentMenu 
-                        filterContent={filterContent} 
-                        sortContent={sortContent} 
-                        searchContent={searchContent} />
-                </div>
-                <section className="flex-col-10">
-                    {filter.length === 0 ? <p>No search results found</p> : null}
-                    <ContentList content={filter} />
-                </section>
-            </div> */}
-
-            {/* {isLoaded ? <ContentPage data={data[3]} /> : null} */}
+                </Route>
+                <Route path="/content/*">
+                        <NoMatch />
+                </Route>
+            </Switch>
         </div>
     );
 }

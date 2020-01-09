@@ -60,9 +60,6 @@
     }
 }
 
-
-
-
 .map-box {
     min-height: 450px;
     background-color: rgba(255,255,255,0.1);
@@ -84,7 +81,7 @@
 
     &__text {
         font-size: 14px;
-        color: #8e8c8c;
+        color: #afafaf;
     }
 
     &__address {
@@ -131,7 +128,7 @@
             color: #fff;
     
             &:hover {
-                color: #1e90ff;
+                color: #ffc000;
             }
         }
     }
@@ -149,10 +146,6 @@
     float: left;
     margin-right: 20px;
     font-size: 0;
-
-    &:hover {
-        color: #1e90ff;
-    }
 
     &--twitter {
         background-image: url("../assets/twitter.png");

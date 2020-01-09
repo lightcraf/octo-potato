@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./AddContent.scss";
 
 function AddContent() {
@@ -10,6 +10,10 @@ function AddContent() {
         fileError: false
     });
     const [formSuccess, setFormSuccess] = useState(false);
+
+    useEffect(() => {
+        document.title = "Add new";
+    }, []);
 
     const addContent = (event) => {
         event.preventDefault();
@@ -30,10 +34,10 @@ function AddContent() {
         for (let [key, value] of formData.entries()) {
             if (key === "title") {
                 if (value.trim().length === 0 || value.trim().length > 100) {
-                    setErrors(errors => ({ ...errors, titleError: true }));
+                    setErrors(prevState => ({ ...prevState, titleError: true }));
                     itemValid.push(false);
                 } else {
-                    setErrors(errors => ({ ...errors, titleError: false }));
+                    setErrors(prevState => ({ ...prevState, titleError: false }));
                 }
             } else if (key === "description") {
                 if (value.trim().length === 0 || value.trim().length > 1000) {
@@ -58,24 +62,24 @@ function AddContent() {
                 }
             } else if (key === "poster") {
                 if (value.type !== "image/png" && value.type !== "image/jpg" && value.type !== "image/jpeg") {
-                    setErrors(errors => ({ ...errors, fileError: true }));
+                    setErrors(prevState => ({ ...prevState, fileError: true }));
                     itemValid.push(false);
                 } else {
-                    setErrors(errors => ({ ...errors, fileError: false }));
+                    setErrors(prevState => ({ ...prevState, fileError: false }));
                 }
             } else if (key === "secondImg") {
                 if (value.type !== "image/png" && value.type !== "image/jpg" && value.type !== "image/jpeg") {
-                    setErrors(errors => ({ ...errors, fileError: true }));
+                    setErrors(prevState => ({ ...prevState, fileError: true }));
                     itemValid.push(false);
                 } else {
-                    setErrors(errors => ({ ...errors, fileError: false }));
+                    setErrors(prevState => ({ ...prevState, fileError: false }));
                 }
             } else if (key === "thirdImg") {
                 if (value.type !== "image/png" && value.type !== "image/jpg" && value.type !== "image/jpeg") {
-                    setErrors(errors => ({ ...errors, fileError: true }));
+                    setErrors(prevState => ({ ...prevState, fileError: true }));
                     itemValid.push(false);
                 } else {
-                    setErrors(errors => ({ ...errors, fileError: false }));
+                    setErrors(prevState => ({ ...prevState, fileError: false }));
                 }
             }
         }
@@ -87,6 +91,7 @@ function AddContent() {
         } else {
             fetch("/api/add", {
                 method: "POST",
+                credentials: "include",
                 body: formData
             })
                 .then(res => res.json())

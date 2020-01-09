@@ -59,32 +59,30 @@ exports.addContent = function (req, res) {
         if (file.type === "image/png" ||
             file.type === "image/jpg" ||
             file.type === "image/jpeg") {
-                newContent[name] = path.basename(file.path);
+            newContent[name] = path.basename(file.path);
         } else {
             errors.fileError = true;
         }
     });
 
-    form.on("error", function(err) {
+    form.on("error", function (err) {
         console.log(err);
-        return res.send({errors});
+        return res.send({ errors });
     });
 
     form.on("end", function () {
         for (let x in errors) {
             if (errors[x] === true) {
-                return res.send({errors});
+                return res.send({ errors });
             }
         }
 
-        db.serialize(() => {
-            db.run(`INSERT INTO content (type, title, description, genre, rating_count, rating_sum, poster, image_1, image_2) 
-            VALUES (?, ?, ?, ?, 0, 0, ?, ?, ?)`, [newContent.type, newContent.title, newContent.description, newContent.genre, newContent.poster, newContent.secondImg, newContent.thirdImg], function (err) {
-                if (err) {
-                    console.log(err);
-                }
-                return res.send({status: 200});
-            });
+        db.run(`INSERT INTO content (type, title, description, genre, rating_count, rating_sum, rating, poster, image_1, image_2) 
+            VALUES (?, ?, ?, ?, 0, 0, 0, ?, ?, ?)`, [newContent.type, newContent.title, newContent.description, newContent.genre, newContent.poster, newContent.secondImg, newContent.thirdImg], function (err) {
+            if (err) {
+                console.log(err);
+            }
+            return res.send({ status: 200 });
         });
     });
 };

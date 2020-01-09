@@ -1,15 +1,10 @@
 import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 import "./Pagination.scss";
-// import { Link } from "react-router-dom";
-
 
 function Pagination(props) {
     let startPage = 1;
     let endPage = 1;
-
-    function setPage(page) {
-        props.changePage(page);
-    }
 
     if (props.totalPages <= 5) {
         startPage = 1;
@@ -36,31 +31,29 @@ function Pagination(props) {
     })(startPage, endPage + 1);
 
     if (pages.length < 2) {
-        return (null);
+        return null;
     } else {
         return (
             <Fragment>
                 <ul className="pagination">
                     <li className="pagination__item">
-                        {/* {props.currentPage === 1 ? null : <span className={props.currentPage === 1 ? "pagination__link pagination--disabled" : "pagination__link"}
-                            onClick={() => setPage(props.currentPage - 1)}>«</span>} */}
-
-                        <span className={props.currentPage === 1 ? "pagination__link pagination--disabled" : "pagination__link"}
-                            onClick={() => setPage(props.currentPage - 1)}>«</span>
+                        {props.currentPage === 1 ? null : (
+                            <Link to={"#page" + (props.currentPage - 1)}
+                                className={props.currentPage === 1 ? "pagination__link pagination--active" : "pagination__link"}>«
+                            </Link>)}
                     </li>
                     {pages.map((page, index) =>
                         <li key={index} className="pagination__item">
-                            <span className={props.currentPage === page ? 'pagination__link pagination--active' : "pagination__link"}
-                                onClick={() => setPage(page)}>{page}</span>
+                            <Link to={"#page" + page}
+                                className={props.currentPage === page ? "pagination__link pagination--active" : "pagination__link"}>{page}
+                            </Link>
                         </li>
                     )}
                     <li className="pagination__item">
-                        {/* {props.currentPage === props.totalPages ? null : <span className={props.currentPage === props.totalPages ? "pagination__link pagination--disabled" : "pagination__link"}
-                            onClick={() => setPage(props.currentPage + 1)}>»</span>} */}
-
-
-                        <span className={props.currentPage === props.totalPages ? "pagination__link pagination--disabled" : "pagination__link"}
-                            onClick={() => setPage(props.currentPage + 1)}>»</span>
+                        {props.currentPage === props.totalPages ? null : (
+                            <Link to={"#page" + (props.currentPage + 1)}
+                                className={props.currentPage === props.totalPages ? "pagination__link pagination--active" : "pagination__link"}>»
+                            </Link>)}
                     </li>
                 </ul>
             </Fragment>

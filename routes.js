@@ -3,6 +3,8 @@ const rating = require("./handlers/vote.js");
 const add = require("./handlers/addContent.js");
 const signUp = require("./handlers/signUp.js");
 const signIn = require("./handlers/signIn.js");
+const signOut = require("./handlers/signOut.js");
+const verify = require("./handlers/verifyUser.js");
 
 module.exports = function (app) {
     app.get("/api/content", content.contentList);
@@ -10,4 +12,6 @@ module.exports = function (app) {
     app.post("/api/add", add.addContent);
     app.post("/api/signup", signUp.signUpProcessPost);
     app.post("/api/signin", signIn.signInProcessPost);
+    app.get("/api/signout", signOut.signOutProcessGet);
+    app.get("/api/verify", verify.verifyUser);
 };

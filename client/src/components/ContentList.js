@@ -1,52 +1,37 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./ContentList.scss";
 import Pagination from "./Pagination";
 
 function ContentList(props) {
-    const [pageList, setPageList] = useState(props.content);
+    const location = useLocation();
+    const [pageList, setPageList] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const pageSize = 3;
 
-    console.log(props.content);
+    useEffect(() => {
+        document.title = "Content";
+    }, []);
 
-    const changePage = (page) => {
-        let startIndex = 0;
-        let endIndex = 3;
-        console.log("pageList******");
-        console.log(pageList);
-        console.log("pageList*****");
+    useEffect(() => {
+        let page = 1;
 
-        setTotalPages(Math.ceil(props.content.length / pageSize));
-
-        if (page < 1 || page > totalPages) {
-            return;
+        if (location.hash !== "") {
+            page = Number(location.hash.split("#page")[1]);
         }
 
+        let startIndex = (page - 1) * pageSize;
+        let endIndex = startIndex + pageSize;
+
+        setPageList(props.content.slice(startIndex, endIndex));
         setCurrentPage(page);
-
-        startIndex = (currentPage - 1) * pageSize;
-        endIndex = Math.min(startIndex + pageSize - 1, props.content.length - 1);
-
-        setPageList(props.content.slice(startIndex, endIndex + 1));
-    };
+    }, [props.content, location.hash]);
 
     useEffect(() => {
-        changePage(currentPage);
-    }, [props.content, currentPage]);
-
-    useEffect(() => {
-        const handleProps = () => {
-            setPageList(props.content.slice(0, pageSize));
-            setCurrentPage(1);
-        };
-
-        handleProps();
-
-        return () => {
-            handleProps();
-        }
+        window.location.hash = "";
+        setTotalPages(Math.ceil(props.content.length / pageSize));
+        setCurrentPage(1);
     }, [props.content]);
 
     if (pageList.length === 0) {
@@ -54,13 +39,10 @@ function ContentList(props) {
     } else {
         return (
             <Fragment>
-                {pageList.map(item => {
-                    let ratingValue = item.rating_sum === 0 ? "0/10" : (item.rating_sum/item.rating_count).toFixed(1) + "/10";
-                    let starsWidth = item.rating_sum === 0 ? "0px" : (139 * (item.rating_sum/item.rating_count) / 10).toFixed() + "px";
-
-                    return (<article key={item.id} className="content__item">
+                {pageList.map(item =>
+                    <article key={item.id} className="content__item">
                         <div className="content__poster">
-                            <img src={"content-images/" + item.poster} className="img-responsive" alt={item.title} />
+                            <img src={"/content-images/" + item.poster} alt={item.title} />
                         </div>
                         <div className="content__description-wrapper">
                             <header>
@@ -73,18 +55,17 @@ function ContentList(props) {
                                 <div className="rating__stars">
                                     <div className="rating__stars-bg"></div>
                                     <div className="rating__stars-current"
-                                        style={{ width: starsWidth }}></div>
+                                        style={{ width: (139 * item.rating / 10).toFixed() + "px" }}></div>
                                 </div>
-                                <div className="rating__value">{ratingValue}</div>
+                                <div className="rating__value">{item.rating}/10</div>
                                 <p className="rating__votes">Votes: <span>{item.rating_count}</span></p>
                             </div>
                             <p className="content__description">{item.description}</p>
                         </div>
-                    </article>)
-                })}
+                    </article>
+                )}
                 <Pagination
                     currentPage={currentPage}
-                    changePage={changePage}
                     totalPages={totalPages} />
             </Fragment>
         );

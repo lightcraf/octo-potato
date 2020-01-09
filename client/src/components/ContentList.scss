@@ -19,6 +19,12 @@
     flex: 0 1 100%;
     margin-right: 20px;
 
+    img {
+        max-width: 250px;
+        height: auto;
+        display: block;
+    }
+
     @media all and (max-width: 992px) {
         margin: 0 auto;
     }
@@ -44,7 +50,7 @@
 }
 
 .content__description {
-    color: gray;
+    color: #afafaf;
 }
 
 .rating {

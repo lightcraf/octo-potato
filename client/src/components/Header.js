@@ -4,7 +4,6 @@ import UserGreeting from "./UserGreeting";
 import "./Header.scss";
 import logo from "../assets/logo.png";
 
-
 function Header(props) {
     const [showNav, setToggleNav] = useState(false);
 

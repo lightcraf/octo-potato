@@ -148,3 +148,13 @@
         display: block;
     }
 }
+
+.welcome-user {
+    padding: 10px 20px;
+    text-transform: none;
+    text-align: center;
+
+    &__username {
+        color: #ffc000;
+    }
+}

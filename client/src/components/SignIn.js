@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "./SignIn.scss";
 
@@ -6,6 +6,10 @@ function SignIn() {
     const history = useHistory();
     const [values, setValues] = useState({ username: "", password: "" });
     const [loginError, setLoginError] = useState(false);
+
+    useEffect(() => {
+        document.title = "Sign in";
+    }, []);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;

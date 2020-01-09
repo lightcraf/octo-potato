@@ -10,7 +10,9 @@ function UserGreating(props) {
                 <SignOut />
             </li>
             <li className="top-nav__item">
-                <div className="welcome-user">Welcome<div className="aqua">{username}</div></div>
+                <div className="welcome-user">Welcome <br/>
+                    <span className="welcome-user__username">{username}</span>
+                </div>
             </li>
         </Fragment>
     );

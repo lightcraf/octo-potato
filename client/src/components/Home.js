@@ -1,8 +1,12 @@
-import React, { Fragment } from "react";
+import React, { useEffect, Fragment} from "react";
 import "./Home.scss";
 import Slider from "./Slider";
 
 function Home() {
+    useEffect(() => {
+        document.title = "Home";
+    }, []);
+
     return (
         <Fragment>
             <Slider />

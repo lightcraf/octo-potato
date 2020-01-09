@@ -37,18 +37,6 @@ app.use(function (req, res, next) {
 
 require("./routes.js")(app);
 
-app.get("/api/verify", function(req, res) {
-    const username = res.locals.username;
-    const isLoggedIn = res.locals.isLoggedIn;
-
-    return res.send({ isLoggedIn, username });
-});
-
-app.get("/api/signout", function(req, res) {
-    res.clearCookie("token");
-    res.send({ status: 200 });
-});
-
 app.use(function (req, res, next) {
     res.type("text/html");
     res.status(404).send("<h1>404 - Not Found</h1>");

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./ContentPage.scss";
 
 function ContentPage(props) {
@@ -7,6 +7,10 @@ function ContentPage(props) {
     const [voted, setVoted] = useState(false);
     const [isError, setIsError] = useState(false);
     const [data, setData] = useState(props.data);
+
+    useEffect(() => {
+        document.title = data.title;
+    }, [data.title]);
 
     const handleThumbsGallery = (event) => {
         const target = event.target;
@@ -57,14 +61,11 @@ function ContentPage(props) {
                     setIsError(true)
                 } else {
                     setVoted(true);
-                    setData( prevState => ({ ...prevState, rating_count : result.ratingCount, rating_sum : result.ratingSum }));
+                    setData( prevState => ({ ...prevState, rating_count : result.ratingCount, rating : result.rating }));
                 }
             })
             .catch(err => setIsError(true));
     };
-
-    const ratingValue = data.rating_sum === 0 ? "0/10" : (data.rating_sum/data.rating_count).toFixed(1) + "/10";
-    const starsWidth = data.rating_sum === 0 ? "0px" : (139 * (data.rating_sum/data.rating_count) / 10).toFixed() + "px";
 
     return (
         <div className="content__item">
@@ -96,9 +97,9 @@ function ContentPage(props) {
                     <div className="rating__stars">
                         <div className="rating__stars-bg"></div>
                         <div className="rating__stars-current"
-                            style={{ width: starsWidth }}></div>
+                            style={{ width: (139 * data.rating / 10).toFixed() + "px" }}></div>
                     </div>
-                    <div className="rating__value">{ratingValue}</div>
+                    <div className="rating__value">{data.rating}/10</div>
                     <p className="rating__votes">Votes: <span>{data.rating_count}</span></p>
                 </div>
                 <p className="content__description">{data.description}</p>

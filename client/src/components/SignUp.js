@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 function SignUp() {
@@ -11,6 +11,10 @@ function SignUp() {
         isPasswordValid: false 
     });
     const [submitError, setSubmitError] = useState(false);
+
+    useEffect(() => {
+        document.title = "Sign up";
+    }, []);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;

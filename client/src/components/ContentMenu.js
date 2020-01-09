@@ -76,9 +76,6 @@ function ContentMenu(props) {
                         <li className="left-menu__subitem">
                             <span className="left-menu__link" data-type="video" data-genre="sci-fi">Sci-fi</span>
                         </li>
-                        <li className="left-menu__subitem">
-                            <span className="left-menu__link" data-type="video" data-genre="documentry">Documentry</span>
-                        </li>
                     </ul>
                 </li>
                 <li className="left-menu__item">
