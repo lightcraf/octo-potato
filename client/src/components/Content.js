@@ -96,7 +96,6 @@ function Content() {
                 .then(res => res.json())
                 .then(data => {
                     setLoading(false);
-                    console.log(data);
                     setData(data);
                     setFilter(data);
                 })

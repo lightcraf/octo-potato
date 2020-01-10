@@ -1,3 +1,5 @@
+@import '../styles/variables';
+
 .add-content-form {
     max-width: 500px;
     background-color: rgba(255,255,255,0.1);
@@ -32,7 +34,7 @@
     }
 
     &.error {
-        border-color: #e63f3f;
+        border-color: $error;
     }
 }
 
@@ -57,12 +59,12 @@
 
     &-success {
         font-size: 18px;
-        color: #ffc000;
+        color: $gold;
         text-align: center;
     }
 
     &-error {
         display: inline-block;
-        color: #e63f3f;
+        color: $error;
     }
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Slider.scss";
 import slide_1 from "../assets/avengers.jpg";
-import slide_2 from "../assets/Lord of the rings.jpg";
+import slide_2 from "../assets/aaa.jpg";
 import slide_3 from "../assets/1267865.jpg";
 import slide_4 from "../assets/Interstellar.jpg";
 
@@ -16,13 +16,8 @@ function Slider() {
     ];
 
     function getSize() {
-        const width = document.body.clientWidth;
-        // 992 - constainer width
-        // 1920 x 800 - image size
-        if (width < 992) {
-            return Math.floor(document.body.clientWidth * 800 / 1920);
-        }
-        return Math.floor(992 * 1080 / 1920);
+        // 1920 x 1080 - image size
+        return Math.floor(document.body.clientWidth * 1080 / 1920) - 10;
     }
 
     const handleSlideClick = event => {

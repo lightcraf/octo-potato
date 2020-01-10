@@ -1,3 +1,5 @@
+@import '../styles/variables';
+
 .header {
     width: 100%;
     background-color:rgba(0,0,0,0.5);
@@ -21,12 +23,12 @@
         display: block;
         float: right;
 
-        @media all and (max-width: 992px) {
+        @media all and (max-width: $tablet-width) {
             display: none;
         }
 
         &.active {
-            @media all and (max-width: 992px) {
+            @media all and (max-width: $tablet-width) {
                 display: block;
                 float: none;
             }
@@ -37,7 +39,7 @@
         float: left;
         border-right: 2px solid transparent;
 
-        @media all and (max-width: 992px) {
+        @media all and (max-width: $tablet-width) {
             display: block;
             width: 100%;
             text-align: center;
@@ -57,21 +59,21 @@
         line-height: 60px;
         transition: all 400ms ease;
 
-        @media all and (max-width: 992px) {
+        @media all and (max-width: $tablet-width) {
             line-height: 40px;
             padding: 0;
         }
 
         &.caret-nav {
             padding-right: 34px;
-            @media all and (max-width: 992px) {
+            @media all and (max-width: $tablet-width) {
             padding-right: 0;
             }
         }
 
         &:hover {
             background-color: rgba(255,255,255,0.2);
-            color: #ffc000;
+            color: $gold;
         }
     }
 }
@@ -86,13 +88,13 @@
     top: 48%;
     right: 18px;
 
-    @media all and (max-width: 992px) {
+    @media all and (max-width: $tablet-width) {
         display: none;
     }
 }
 
 .caret-nav:hover::after {
-    border-top: 5px solid #ffc000;
+    border-top: 5px solid $gold;
 }
 
 .toggle-nav {
@@ -104,7 +106,7 @@
     margin: 18px 10px;
     font-size: 0;
 
-    @media all and (max-width: 992px) {
+    @media all and (max-width: $tablet-width) {
         float: right;
         display: block;
     }
@@ -126,7 +128,7 @@
         width: 200px;
         z-index: 20;
 
-        @media all and (max-width: 992px) {
+        @media all and (max-width: $tablet-width) {
             width: 100%;
             position: relative;
         }
@@ -140,7 +142,7 @@
 
         &:hover {
             background-color: rgba(255,255,255,0.2);
-            color: #ffc000;
+            color: $gold;
         }
     }
 
@@ -155,6 +157,6 @@
     text-align: center;
 
     &__username {
-        color: #ffc000;
+        color: $gold;
     }
 }

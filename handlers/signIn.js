@@ -17,18 +17,16 @@ exports.signInProcessPost = function (req, res) {
                 throw err;
             }
             if (row) {
-                if (username === row.username) {
-                    bcrypt.compare(password, row.password, function (err, response) {
-                        if (response === true) {
-                            const token = jwt.sign({ username: username }, SECRET, { expiresIn: 60000 });
-                            res.cookie("token", token, { expires: new Date(Date.now() + 60000), httpOnly: true });
-                            return res.send({ status: 200 });
-                        } else {
-                            errors.loginError = true;
-                            return res.send({ errors });
-                        }
-                    });
-                }
+                bcrypt.compare(password, row.password, function (err, response) {
+                    if (response === true) {
+                        const token = jwt.sign({ username: username }, SECRET, { expiresIn: 1000*60*60 });
+                        res.cookie("token", token, { expires: new Date(Date.now() + 1000*60*60), httpOnly: true });
+                        return res.send({ status: 200 });
+                    } else {
+                        errors.loginError = true;
+                        return res.send({ errors });
+                    }
+                });
             } else {
                 errors.loginError = true;
                 return res.send({ errors });

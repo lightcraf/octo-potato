@@ -1,3 +1,5 @@
+@import '../styles/variables';
+
 .content__item {
     display: flex;
     margin: 10px;
@@ -8,7 +10,7 @@
         border-bottom: none;
     }
 
-    @media all and (max-width: 992px) {
+    @media all and (max-width: $tablet-width) {
         flex-wrap: wrap;
         padding-bottom: 0;
     }
@@ -25,7 +27,7 @@
         display: block;
     }
 
-    @media all and (max-width: 992px) {
+    @media all and (max-width: $tablet-width) {
         margin: 0 auto;
     }
 }
@@ -38,13 +40,13 @@
         color: #fff;
     
         &:hover {
-            color: #ffc000;
+            color: $gold;
         }
     }
 }
 
 .content__description-wrapper {
-    @media all and (max-width: 992px) {
+    @media all and (max-width: $tablet-width) {
         padding-top: 8px;
     }
 }

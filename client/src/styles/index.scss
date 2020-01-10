@@ -1,4 +1,5 @@
-@import "normalize.css";
+@import-normalize;
+@import 'variables';
 
 * {
     -webkit-box-sizing: border-box;
@@ -13,6 +14,7 @@ body {
     font-size: 16px;
     background: #000 url('../assets/bg.jpg') center top no-repeat fixed;
     color: #fff;
+    margin: 0;
 }
 
 a {
@@ -29,7 +31,7 @@ ul {
     display: flex;
     flex-wrap: wrap;
 
-    @media all and (max-width: 992px) {
+    @media all and (max-width: $tablet-width) {
         flex-direction: column;
     }
 }

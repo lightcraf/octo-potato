@@ -1,3 +1,5 @@
+@import '../styles/variables';
+
 .about-us {
     text-align: center;
     padding: 20px 0;
@@ -73,7 +75,7 @@
 }
 
 .company-contacts {
-    padding: 10px 15px 0 30px;
+    padding: 10px 15px 15px 30px;
 
     &__city {
         font-size: 18px;
@@ -128,14 +130,14 @@
             color: #fff;
     
             &:hover {
-                color: #ffc000;
+                color: $gold;
             }
         }
     }
 }
 
 .social-links {
-    padding: 5px 0;
+    height: 20px;
 }
 
 .social-link {

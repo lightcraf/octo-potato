@@ -1,3 +1,5 @@
+@import '../styles/variables';
+
 .login-form {
     background-color: rgba(255,255,255,0.1);
     border: 1px solid rgba(255,255,255,0.1);
@@ -23,7 +25,7 @@
     }
 
     &.error {
-        border-color: #e63f3f;
+        border-color: $error;
 
         &:hover, &:focus {
             box-shadow: 0 0 5px #ff8e8e;
@@ -71,7 +73,7 @@
 }
 
 .form-privacy-link {
-    color: #ffc000;
+    color: $gold;
 
     &:hover {
         text-decoration: underline;
@@ -81,5 +83,5 @@
 .signup-error-message {
     display: inline-block;
     font-size: 14px;
-    color: #e63f3f;
+    color: $error;
 }

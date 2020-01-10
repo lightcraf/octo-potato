@@ -1,3 +1,5 @@
+@import '../styles/variables';
+
 .pagination {
     display: flex;
     justify-content: center;
@@ -18,15 +20,9 @@
 
         &:hover:not(.pagination--active) {
             background-color: rgba(255, 255, 255, 0.2);
-            color: #ffc000;
+            color: $gold;
         }
     }
-
-    // &--disabled {
-    //     color: #000;
-    //     background-color: rgba(255, 255, 255, 0.2);
-    //     cursor: default;
-    // }
 
     &--active {
         color: #000;

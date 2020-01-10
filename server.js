@@ -31,9 +31,7 @@ app.use(function (req, res, next) {
         res.locals.isLoggedIn = false;
         next();
     }
-
 });
-
 
 require("./routes.js")(app);
 

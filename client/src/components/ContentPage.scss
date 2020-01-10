@@ -1,8 +1,10 @@
+@import '../styles/variables';
+
 .thumbnail-wrapper {
     max-width: 300px;
     margin-right: 20px;
 
-    @media all and (max-width: 992px) {
+    @media all and (max-width: $tablet-width) {
         margin: 0 auto;
     }
 }
@@ -13,7 +15,7 @@
     position: relative;
     margin: 10px 0;
 
-    @media all and (max-width: 576px) {
+    @media all and (max-width: $mobile-width) {
         width: 264px;
         height: 264px;
     }
@@ -41,7 +43,7 @@
         border: 1px solid #afafaf;
         overflow: hidden;
 
-        @media all and (max-width: 576px) {
+        @media all and (max-width: $mobile-width) {
             width: 86px;
             height: 86px;
         }
@@ -55,7 +57,7 @@
         margin: auto;
         cursor: pointer;
 
-        @media all and (max-width: 576px) {
+        @media all and (max-width: $mobile-width) {
             height: 86px;
         }
     }
@@ -93,10 +95,10 @@
 .vote-message {
     &--success {
         font-size: 18px;
-        color: #ffc000;
+        color: $gold;
     }
 
     &--error {
-        color: #e63f3f;
+        color: $error;
     }
 }
