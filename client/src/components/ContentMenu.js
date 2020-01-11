@@ -2,12 +2,17 @@ import React, { useState } from "react";
 import "./ContentMenu.scss";
 
 function ContentMenu(props) {
-    const [hidden, setHidden] = useState([false, false]);
+    const [isFilterHidden, setIsFilterHidden] = useState([true, true]);
+    const [isMenuHidden, setIsMenuHidden] = useState(true);
+
+    function toggleMenu() {
+        setIsMenuHidden((prevState) => !prevState);
+    }
 
     function toggleFilter(i) {
-        const currentItem = [...hidden];
+        const currentItem = [...isFilterHidden];
         currentItem[i] = !currentItem[i];
-        setHidden(currentItem);
+        setIsFilterHidden(currentItem);
     }
 
     function handleFilter(event) {
@@ -49,21 +54,22 @@ function ContentMenu(props) {
     }
 
     return (
-        <nav className="left-menu-wrapper" onClick={(event) => handleFilter(event)}>
+        <nav className={"left-menu-wrapper" + (isMenuHidden ? "" : " active")} onClick={handleFilter}>
             <p>Menu</p>
+            <p className="toggle-left-menu" onClick={toggleMenu}>Menu</p>
             <ul className="left-menu">
                 <li className="left-menu__item">
                     <span className="left-menu__link" data-type="all" data-genre="all">All content</span>
                 </li>
                 <li className="left-menu__item">
                     <span
-                        className={"left-menu__link " + (hidden[0] ? "caret-rotate" : "caret")}
+                        className={"left-menu__link " + (isFilterHidden[0] ? "caret" : "caret-rotate")}
                         aria-expanded="false"
                         aria-controls="collapsible-0"
                         onClick={() => toggleFilter(0)}>Movies</span>
                 </li>
                 <li className="left-menu__item">
-                    <ul className={hidden[0] ? "left-menu-show" : "left-menu-hide"} id="collapsible-0" aria-hidden="true">
+                    <ul className={isFilterHidden[0] ? "left-menu-hide" : "left-menu-show"} id="collapsible-0" aria-hidden="true">
                         <li className="left-menu__subitem">
                             <span className="left-menu__link" data-type="video" data-genre="all">All</span>
                         </li>
@@ -80,13 +86,13 @@ function ContentMenu(props) {
                 </li>
                 <li className="left-menu__item">
                     <span 
-                        className={"left-menu__link " + (hidden[1] ? "caret-rotate" : "caret")}
+                        className={"left-menu__link " + (isFilterHidden[1] ? "caret" : "caret-rotate")}
                         aria-expanded="false"
                         aria-controls="collapsible-1"
                         onClick={() => toggleFilter(1)}>Books</span>
                 </li>
                 <li className="left-menu__item">
-                    <ul className={hidden[1] ? "left-menu-show" : "left-menu-hide"} id="collapsible-1" aria-hidden="true">
+                    <ul className={isFilterHidden[1] ? "left-menu-hide" : "left-menu-show"} id="collapsible-1" aria-hidden="true">
                         <li className="left-menu__subitem">
                             <span className="left-menu__link" data-type="book" data-genre="all">All</span>
                         </li>
@@ -103,7 +109,7 @@ function ContentMenu(props) {
                 </li>
             </ul>
 
-            <div className="search" role="search" onChange={(event) => handleSearch(event)}>
+            <div className="search" role="search" onChange={handleSearch}>
                 <label htmlFor="search-content" className="hide-label">Search</label>
                 <input type="search" id="search-content" placeholder="Search" title="Search" /><br />
 
@@ -118,7 +124,7 @@ function ContentMenu(props) {
             </div>
 
             <div className="sort-content" role="search">
-                Sort by <select className="sort-content__select" defaultValue={"default"} onClick={(event) => handleSort(event)}>
+                Sort by <select className="sort-content__select" defaultValue={"default"} onClick={handleSort}>
                     <option value="default" disabled hidden></option>
                     <option value="title-asc">Title (A - Z)</option>
                     <option value="title-desc">Title (Z - A)</option>

@@ -5,10 +5,10 @@ import "./Header.scss";
 import logo from "../assets/logo.png";
 
 function Header(props) {
-    const [showNav, setToggleNav] = useState(false);
+    const [isNavHidden, setIsNavHidden] = useState(true);
 
     const toggleNav = () => {
-        setToggleNav((prevShowNav) => !prevShowNav);
+        setIsNavHidden((prevState) => !prevState);
     }
 
     return (
@@ -17,10 +17,10 @@ function Header(props) {
                 <h1 className="logo">
                     <Link to="/"><img src={logo} className="logo__img" alt="site logo" /></Link>
                 </h1>
-                <div className="toggle-nav" onClick={toggleNav}>
+                <div className="toggle-nav" aria-expanded="false" aria-controls="collapsible-3" onClick={toggleNav}>
                     <span>Toggle navigation</span>
                 </div>
-                <ul className={showNav ? "top-nav__list active" : "top-nav__list"}>
+                <ul className={"top-nav__list" + (isNavHidden ? "" : " active")} id="collapsible-3" aria-hidden="true">
                     <li className="top-nav__item">
                         <Link to="/" className="top-nav__link">Home</Link>
                     </li>
