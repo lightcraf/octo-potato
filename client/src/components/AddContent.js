@@ -138,8 +138,8 @@ function AddContent() {
                 </optgroup>
                 <optgroup label="Book">
                     <option value="cookbook">Cookbooks</option>
-                    <option value="history">History</option>
                     <option value="romance">Romance</option>
+                    <option value="science">Science</option>
                 </optgroup>
             </select>
 

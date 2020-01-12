@@ -97,13 +97,13 @@ function ContentMenu(props) {
                             <span className="left-menu__link" data-type="book" data-genre="all">All</span>
                         </li>
                         <li className="left-menu__subitem">
-                            <span className="left-menu__link" data-type="book" data-genre="history">History</span>
-                        </li>
-                        <li className="left-menu__subitem">
                             <span className="left-menu__link" data-type="book" data-genre="cookbook">Cookbooks</span>
                         </li>
                         <li className="left-menu__subitem">
                             <span className="left-menu__link" data-type="book" data-genre="romance">Romance</span>
+                        </li>
+                        <li className="left-menu__subitem">
+                            <span className="left-menu__link" data-type="book" data-genre="science">Science</span>
                         </li>
                     </ul>
                 </li>

@@ -15,7 +15,7 @@ exports.addContent = function (req, res) {
         fileError: false
     };
     const contentTypes = ["video", "book"];
-    const contentGenres = ["action", "drama", "sci-fi", "cookbook", "history", "romance"];
+    const contentGenres = ["action", "drama", "sci-fi", "cookbook", "romance", "science"];
 
     form.parse(req);
     form.keepExtensions = true;
