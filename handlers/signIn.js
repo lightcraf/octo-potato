@@ -10,9 +10,10 @@ exports.signInProcessPost = function (req, res) {
     const password = req.body.password;
     const errors = { loginError: false };
     const USERNAME_PATTERN = /^[a-zA-Z0-9]+$/;
+    const PASSWORD_PATTERN = /^\S{6,}$/;
 
-    if (USERNAME_PATTERN.test(username) && password.trim().length > 0) {
-        db.get(`SELECT username, password FROM users WHERE username = ?`, [username], function (err, row) {
+    if (USERNAME_PATTERN.test(username) && PASSWORD_PATTERN.test(password)) {
+        db.get("SELECT username, password FROM users WHERE username = ?", [username], function (err, row) {
             if (err) {
                 throw err;
             }

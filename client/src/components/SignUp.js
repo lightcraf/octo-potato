@@ -18,9 +18,9 @@ function SignUp() {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        const EMAIL_PATTERN = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+        const EMAIL_PATTERN = /^([a-z0-9_\.\+-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
         const USERNAME_PATTERN = /^[a-zA-Z0-9]{2,16}$/;
-        const PASSWORD_PATTERN = /^.{6,}$/;
+        const PASSWORD_PATTERN = /^\S{6,}$/;
 
         setValues({ ...values, [name]: value });
         setFormErrors( prevState => ({ ...prevState, isNameValid2: true }));

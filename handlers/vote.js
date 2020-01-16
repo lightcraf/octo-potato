@@ -3,12 +3,18 @@ const DB_PATH = "public/db/content.db";
 const db = new sqlite3.Database(DB_PATH);
 
 exports.vote = function (req, res) {
-    const id = req.params["id"];
-    const rating = req.body.rating;
+    const id = Number(req.params["id"]);
+    const rating = Number(req.body.rating);
 
-    if (!Number.isInteger(Number(rating))) {
+    if (!Number.isInteger(rating)) {
         return res.send({ voteError: true });
     } else if (rating < 1 || rating > 10) {
+        return res.send({ voteError: true });
+    }
+
+    if (!Number.isInteger(id)) {
+        return res.send({ voteError: true });
+    } else if (id < 1 || id > 10000000) {
         return res.send({ voteError: true });
     }
 
@@ -31,10 +37,10 @@ exports.vote = function (req, res) {
         return new Promise((resolve, reject) => {
             db.run("UPDATE content SET rating_count = ?, rating_sum = ?, rating = ? WHERE id = ?", [newRating.ratingCount, newRating.ratingSum, newRating.rating, id], function (err) {
                 if (err) {
-                  reject(err);
+                    reject(err);
                 }
                 res.send(newRating);
-              });
+            });
         });
     }
 

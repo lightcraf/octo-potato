@@ -16,9 +16,9 @@ exports.signUpProcessPost = function (req, res) {
 
     const saltRounds = 12;
 
-    const EMAIL_PATTERN = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+    const EMAIL_PATTERN = /^([a-z0-9_\.\+-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
     const USERNAME_PATTERN = /^[a-zA-Z0-9]{2,16}$/;
-    const PASSWORD_PATTERN = /^.{6,}$/;
+    const PASSWORD_PATTERN = /^\S{6,}$/;
 
     if (!USERNAME_PATTERN.test(username)) {
         errors.isNameValid = false;
