@@ -6,15 +6,8 @@ exports.vote = function (req, res) {
     const id = Number(req.params["id"]);
     const rating = Number(req.body.rating);
 
-    if (!Number.isInteger(rating)) {
-        return res.send({ voteError: true });
-    } else if (rating < 1 || rating > 10) {
-        return res.send({ voteError: true });
-    }
-
-    if (!Number.isInteger(id)) {
-        return res.send({ voteError: true });
-    } else if (id < 1 || id > 10000000) {
+    if (!Number.isInteger(id) || id < 1 || id > 10000000 ||
+        !Number.isInteger(rating) || rating < 1 || rating > 10) {
         return res.send({ voteError: true });
     }
 

@@ -54,9 +54,9 @@ function ContentMenu(props) {
     }
 
     return (
-        <nav className={"left-menu-wrapper" + (isMenuHidden ? "" : " active")} onClick={handleFilter}>
-            <p>Menu</p>
-            <p className="toggle-left-menu" onClick={toggleMenu}>Menu</p>
+        <aside className={"left-menu-wrapper" + (isMenuHidden ? "" : " active")} onClick={handleFilter}>
+            <h3 className="left-menu__title">Menu</h3>
+            <h3 className="left-menu__title toggle-left-menu" onClick={toggleMenu}>Menu</h3>
             <ul className="left-menu">
                 <li className="left-menu__item">
                     <span className="left-menu__link" data-type="all" data-genre="all">All content</span>
@@ -124,7 +124,8 @@ function ContentMenu(props) {
             </div>
 
             <div className="sort-content" role="search">
-                Sort by <select className="sort-content__select" defaultValue={"default"} onClick={handleSort}>
+                <p>Sort by</p>
+                <select className="sort-content__select" defaultValue={"default"} onClick={handleSort}>
                     <option value="default" disabled hidden></option>
                     <option value="title-asc">Title (A - Z)</option>
                     <option value="title-desc">Title (Z - A)</option>
@@ -135,7 +136,7 @@ function ContentMenu(props) {
                 </select>
             </div>
             <a href="/add" className="add-content-link">Add new</a>
-        </nav>
+        </aside>
     );
 }
 

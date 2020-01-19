@@ -1,10 +1,11 @@
-import React, { useEffect, Fragment} from "react";
+import React, { useEffect, Fragment } from "react";
 import "./Home.scss";
 import Slider from "./Slider";
+import Map from "./Map";
 
 function Home() {
     useEffect(() => {
-        document.title = "Home";
+        document.title = "Content Library";
     }, []);
 
     return (
@@ -15,12 +16,12 @@ function Home() {
                 <div className="flex-row">
                     <div className="flex-col-12">
                         <h3 className="about-us__title">About Us</h3>
-                        <p className="about-us__text">Lorem ipsum dolor sit amet, consectetur 
-                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore 
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
-                        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+                        <p className="about-us__text">Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                         sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </div>
                 </div>
@@ -49,10 +50,10 @@ function Home() {
                 </div>
             </section>
 
-            <section className="map-box">
+            <section id="contact" className="map-box">
                 <div className="flex-row">
                     <div className="flex-col-8">
-                        <div className="map" style={{width: "100%", minHeight: "450px"}}></div>
+                        <Map />
                     </div>
                     <div className="flex-col-4">
                         <div className="company-contacts">
@@ -81,27 +82,27 @@ function Home() {
                             </ul>
                             <ul className="social-links">
                                 <li>
-                                    <a href="#twitter" 
-                                        className="social-link social-link--twitter" 
-                                        target="_blank" 
+                                    <a href="#twitter"
+                                        className="social-link social-link--twitter"
+                                        target="_blank"
                                         title="Twitter">Twitter</a>
                                 </li>
                                 <li>
-                                    <a href="#facebook" 
-                                        className="social-link social-link--facebook" 
-                                        target="_blank" 
+                                    <a href="#facebook"
+                                        className="social-link social-link--facebook"
+                                        target="_blank"
                                         title="Facebook">Facebook</a>
                                 </li>
                                 <li>
-                                    <a href="#google-plus" 
-                                        className="social-link social-link--instagram" 
-                                        target="_blank" 
+                                    <a href="#google-plus"
+                                        className="social-link social-link--instagram"
+                                        target="_blank"
                                         title="Instagram">Instagram</a>
                                 </li>
                                 <li>
-                                    <a href="#instagram" 
-                                        className="social-link social-link--google" 
-                                        target="_blank" 
+                                    <a href="#instagram"
+                                        className="social-link social-link--google"
+                                        target="_blank"
                                         title="Google plus">Google plus</a>
                                 </li>
                             </ul>

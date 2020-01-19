@@ -4,7 +4,6 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Home from "./Home";
 import Content from "./Content";
-import ContentPage from "./ContentPage";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import AddContent from "./AddContent";
@@ -21,7 +20,6 @@ function Main() {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setIsAuthenticated(data.isLoggedIn);
                 setUsername(data.username);
             })
@@ -39,9 +37,6 @@ function Main() {
                     </Route>
                     <Route path="/content">
                         <Content />
-                    </Route>
-                    <Route path="/content/:id">
-                        <ContentPage />
                     </Route>
                     <Route path="/signin">
                         {isLoggedIn ? <Redirect to="/" /> : <SignIn />}

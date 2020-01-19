@@ -1,5 +1,13 @@
 @import '../styles/variables';
 
+.content-list {
+    width: calc(100% - 220px);
+
+    @media all and (max-width: $tablet-width) {
+        width: 100%;
+    }
+}
+
 .content__item {
     display: flex;
     margin: 10px;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Switch, Route } from "react-router-dom";
 import ContentMenu from "./ContentMenu";
 import ContentList from "./ContentList";
@@ -105,32 +105,30 @@ function Content() {
         fetchData();
     }, []);
 
-
     return (
-        <div className="content-list-page">
+        <div className="content-page">
             <Switch>
                 {data.map((item, index) =>
                     <Route key={item.id} exact path={"/content/" + item.id}>
                         <ContentPage data={data[index]} />
                     </Route>
                 )}
-
+                
                 <Route exact path={"/content"}>
-                    <div className="flex-row">
-                        <div className="flex-col-2">
-                            <ContentMenu
-                                filterContent={filterContent}
-                                sortContent={sortContent}
-                                searchContent={searchContent} />
-                        </div>
-                        <section className="flex-col-10">
+                    <Fragment>
+                        <ContentMenu
+                            filterContent={filterContent}
+                            sortContent={sortContent}
+                            searchContent={searchContent} />
+
+                        <section className="content-list">
                             {hasError && <p>Something went wrong ...</p>}
                             {loading ? <div className="spinner"></div> : <ContentList content={filter} />}
                         </section>
-                    </div>
+                    </Fragment>
                 </Route>
                 <Route path="/content/*">
-                        <NoMatch />
+                    <NoMatch />
                 </Route>
             </Switch>
         </div>

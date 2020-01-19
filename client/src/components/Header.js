@@ -37,7 +37,7 @@ function Header(props) {
                         <Link to="/" className="top-nav__link">Forum</Link>
                     </li>
                     <li className="top-nav__item">
-                        <a href="/" className="top-nav__link">Contact</a>
+                        <a href="/#contact" className="top-nav__link">Contact</a>
                     </li>
                     {props.isLoggedIn ? <UserGreeting {...props} /> : (
                         <Fragment>

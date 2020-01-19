@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./Slider.scss";
 import slide_1 from "../assets/avengers.jpg";
-import slide_2 from "../assets/aaa.jpg";
-import slide_3 from "../assets/1267865.jpg";
-import slide_4 from "../assets/Interstellar.jpg";
+import slide_2 from "../assets/movies.jpg";
+import slide_3 from "../assets/prometheus.jpg";
+import slide_4 from "../assets/lord of the rings.jpg";
+import slide_5 from "../assets/interstellar.jpg";
 
 function Slider() {
     const [slideIndex, setSlideIndex] = useState(1);
     const [height, setHeight] = useState(getSize);
     const images = [
-        {"id": 1, "img": slide_1, "alt": "qwerty"},
-        {"id": 2, "img": slide_2, "alt": "qwerty"},
-        {"id": 3, "img": slide_3, "alt": "qwerty"},
-        {"id": 4, "img": slide_4, "alt": "qwerty"}
+        {"id": 1, "img": slide_1, "alt": "Avengers"},
+        {"id": 2, "img": slide_2, "alt": "posters"},
+        {"id": 3, "img": slide_3, "alt": "Prometheus"},
+        {"id": 4, "img": slide_4, "alt": "Lord of the rings"},
+        {"id": 5, "img": slide_5, "alt": "Interstellar"}
     ];
 
     function getSize() {
@@ -33,13 +35,13 @@ function Slider() {
     }
 
     useEffect(() => {
-        if (slideIndex > 4) {
+        if (slideIndex > images.length) {
             setSlideIndex(1);
         }
         if (slideIndex < 1) {
-            setSlideIndex(4);
+            setSlideIndex(images.length);
         }
-    }, [slideIndex]);
+    }, [slideIndex, images.length]);
     
     useEffect(() => {
         function handleResize() {

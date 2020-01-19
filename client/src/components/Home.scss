@@ -41,19 +41,21 @@
         width: 128px;
         height: 128px;
         margin: 0 auto;
-        background-size: cover;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
         font-size: 0;
 
         &--book {
-            background-image: url("../assets/open-book.png");
+            background-image: url("../assets/book-icon.png");
         }
 
         &--video {
-            background-image: url("../assets/video-camera.png");
+            background-image: url("../assets/film-icon.png");
         }
 
         &--music {
-            background-image: url("../assets/music-player.png");
+            background-image: url("../assets/music-icon.png");
         }
     }
 
