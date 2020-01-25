@@ -44,6 +44,9 @@ function ContentMenu(props) {
       
             for (let i = 0; i < childNode.length; i++) { 
                 if (childNode[i].id === "search-content") {
+                    if (childNode[i].value.trim() === "") {
+                        return;
+                    }
                     searchValue = childNode[i].value.trim();
                 } else if (childNode[i].checked) {
                     searchIn = childNode[i].value;
@@ -109,7 +112,7 @@ function ContentMenu(props) {
                 </li>
             </ul>
 
-            <div className="search" role="search" onChange={handleSearch}>
+            <div className="search" role="search" onKeyUp={handleSearch}>
                 <label htmlFor="search-content" className="hide-label">Search</label>
                 <input type="search" id="search-content" placeholder="Search" title="Search" /><br />
 

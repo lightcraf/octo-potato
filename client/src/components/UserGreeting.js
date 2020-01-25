@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import SignOut from "./SignOut";
+import SignOut from "./Registration/SignOut";
 
 function UserGreating(props) {
     const username = props.username;

@@ -48,7 +48,11 @@ exports.signUpProcessPost = function (req, res) {
                                 if (err) {
                                     console.log(err);
                                 }
-                                const token = jwt.sign({ username: username }, SECRET, { expiresIn: 1000*60*60 });
+                                const payload = {
+                                    userId: this.lastID,
+                                    username: username
+                                };
+                                const token = jwt.sign(payload, SECRET, { expiresIn: 1000*60*60 });
                                 res.cookie("token", token, { expires: new Date(Date.now() + 1000*60*60), httpOnly: true });
                                 res.send({ status: 200 });
                             });

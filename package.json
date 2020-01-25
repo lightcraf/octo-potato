@@ -1,5 +1,5 @@
 {
-  "name": "octo-potato",
+  "name": "content-library-2020",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lightcraf/octo-potato.git"
+    "url": "git+https://github.com/lightcraf/content-library-2020.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lightcraf/octo-potato/issues"
+    "url": "https://github.com/lightcraf/content-library-2020/issues"
   },
-  "homepage": "https://github.com/lightcraf/octo-potato#readme",
+  "homepage": "https://github.com/lightcraf/content-library-2020#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.4",

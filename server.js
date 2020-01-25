@@ -23,6 +23,7 @@ app.use(function (req, res, next) {
             } else {
                 req.decoded = decoded;
                 res.locals.isLoggedIn = true;
+                res.locals.userId = req.decoded.userId;
                 res.locals.username = req.decoded.username;
                 next();
             }

@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import ContentMenu from "./ContentMenu";
 import ContentList from "./ContentList";
 import ContentPage from "./ContentPage";
-import NoMatch from "./NoMatch";
+import NoMatch from "../NoMatch";
 
 function Content() {
     const [data, setData] = useState([]);
@@ -90,7 +90,6 @@ function Content() {
 
     useEffect(() => {
         const fetchData = () => {
-            setError(false);
             setLoading(true);
             fetch("/api/content")
                 .then(res => res.json())

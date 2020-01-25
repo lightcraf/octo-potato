@@ -66,7 +66,7 @@ function SignIn() {
 
             {loginError ? <span className="signup-error-message">Incorrect username or password.</span> : null}
 
-            <button type="submit" className="login-btn">Login</button>
+            <button type="submit" className="login-btn">Sign In</button>
         </form>
     );
 }

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./Slider.scss";
-import slide_1 from "../assets/avengers.jpg";
-import slide_2 from "../assets/movies.jpg";
-import slide_3 from "../assets/prometheus.jpg";
-import slide_4 from "../assets/lord of the rings.jpg";
-import slide_5 from "../assets/interstellar.jpg";
+import slide_1 from "../../assets/avengers.jpg";
+import slide_2 from "../../assets/movies.jpg";
+import slide_3 from "../../assets/prometheus.jpg";
+import slide_4 from "../../assets/lord of the rings.jpg";
+import slide_5 from "../../assets/interstellar.jpg";
 
 function Slider() {
     const [slideIndex, setSlideIndex] = useState(1);

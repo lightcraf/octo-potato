@@ -13,14 +13,18 @@ exports.signInProcessPost = function (req, res) {
     const PASSWORD_PATTERN = /^\S{6,}$/;
 
     if (USERNAME_PATTERN.test(username) && PASSWORD_PATTERN.test(password)) {
-        db.get("SELECT username, password FROM users WHERE username = ?", [username], function (err, row) {
+        db.get("SELECT id, username, password FROM users WHERE username = ?", [username], function (err, row) {
             if (err) {
                 throw err;
             }
             if (row) {
                 bcrypt.compare(password, row.password, function (err, response) {
                     if (response === true) {
-                        const token = jwt.sign({ username: username }, SECRET, { expiresIn: 1000*60*60 });
+                        const payload = {
+                            userId: row.id,
+                            username: username
+                        };
+                        const token = jwt.sign(payload, SECRET, { expiresIn: 1000*60*60 });
                         res.cookie("token", token, { expires: new Date(Date.now() + 1000*60*60), httpOnly: true });
                         return res.send({ status: 200 });
                     } else {

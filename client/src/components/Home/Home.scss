@@ -1,4 +1,4 @@
-@import '../styles/variables';
+@import '../../styles/variables';
 
 .about-us {
     text-align: center;
@@ -47,15 +47,15 @@
         font-size: 0;
 
         &--book {
-            background-image: url("../assets/book-icon.png");
+            background-image: url("../../assets/book-icon.png");
         }
 
         &--video {
-            background-image: url("../assets/film-icon.png");
+            background-image: url("../../assets/film-icon.png");
         }
 
         &--music {
-            background-image: url("../assets/music-icon.png");
+            background-image: url("../../assets/music-icon.png");
         }
     }
 
@@ -71,7 +71,7 @@
 }
 
 .map {
-    background-image: url("../assets/map.jpg");
+    background-image: url("../../assets/map.jpg");
     background-repeat: no-repeat;
     background-position: 50% 60%;
 }
@@ -108,23 +108,23 @@
             }
 
             &:nth-child(1)::before {
-                background-image: url("../assets/maps-and-flags.png");
+                background-image: url("../../assets/maps-and-flags.png");
             }
     
             &:nth-child(2)::before {
-                background-image: url("../assets/telephone.png");
+                background-image: url("../../assets/telephone.png");
             }
     
             &:nth-child(3)::before {
-                background-image: url("../assets/link.png");
+                background-image: url("../../assets/link.png");
             }
     
             &:nth-child(4)::before {
-                background-image: url("../assets/envelope.png");
+                background-image: url("../../assets/envelope.png");
             }
     
             &:nth-child(5)::before {
-                background-image: url("../assets/clock.png");
+                background-image: url("../../assets/clock.png");
             }
         }
     
@@ -152,18 +152,18 @@
     font-size: 0;
 
     &--twitter {
-        background-image: url("../assets/twitter.png");
+        background-image: url("../../assets/twitter.png");
     }
 
     &--facebook {
-        background-image: url("../assets/facebook.png");
+        background-image: url("../../assets/facebook.png");
     }
 
     &--instagram {
-        background-image: url("../assets/instagram.png");
+        background-image: url("../../assets/instagram.png");
     }
 
     &--google {
-        background-image: url("../assets/google-plus.png");
+        background-image: url("../../assets/google-plus.png");
     }
 }

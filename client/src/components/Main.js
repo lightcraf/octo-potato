@@ -1,31 +1,17 @@
-﻿import React, { useState, useEffect, Fragment } from "react";
-import { Switch, Route, Redirect, useLocation } from "react-router-dom";
+﻿import React, { Fragment } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
-import Home from "./Home";
-import Content from "./Content";
-import SignIn from "./SignIn";
-import SignUp from "./SignUp";
-import AddContent from "./AddContent";
+import Home from "./Home/Home";
+import Content from "./Content/Content";
+import SignIn from "./Registration/SignIn";
+import SignUp from "./Registration/SignUp";
+import AddContent from "./Content/AddContent";
 import NoMatch from "./NoMatch";
+import useUserStatus from "./useUserStatus";
 
 function Main() {
-    const location = useLocation();
-    const [isLoggedIn, setIsAuthenticated] = useState(false);
-    const [username, setUsername] = useState("");
-
-    useEffect(() => {
-        fetch("/api/verify", {
-            credentials: "include"
-        })
-            .then(res => res.json())
-            .then(data => {
-                setIsAuthenticated(data.isLoggedIn);
-                setUsername(data.username);
-            })
-            .catch(err => console.log(err));
-
-    }, [location.pathname]);
+    const { isLoggedIn, username } = useUserStatus();
 
     return (
         <Fragment>
