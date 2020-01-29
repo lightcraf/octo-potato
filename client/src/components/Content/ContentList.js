@@ -18,7 +18,11 @@ function ContentList(props) {
         let page = 1;
 
         if (location.hash !== "") {
-            page = Number(location.hash.split("#page")[1]);
+            page = Math.floor(Number(location.hash.split("#page")[1]));
+        }
+
+        if (page < 1) {
+            page = 1;
         }
 
         let startIndex = (page - 1) * pageSize;
@@ -31,11 +35,10 @@ function ContentList(props) {
     useEffect(() => {
         window.location.hash = "";
         setTotalPages(Math.ceil(props.content.length / pageSize));
-        setCurrentPage(1);
     }, [props.content]);
 
     if (pageList.length === 0) {
-        return (<p>No search results found</p>);
+        return <p>Nothing here matches your search</p>;
     } else {
         return (
             <Fragment>

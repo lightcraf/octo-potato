@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
 function Map() {
-    const [offlineMap, setOfflineMap] = useState(false);
+    const [offlineMap, setOfflineMap] = useState(true);
     const mapEl = useRef();
 
     useEffect(() => {
