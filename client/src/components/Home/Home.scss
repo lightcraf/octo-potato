@@ -95,36 +95,37 @@
         li {
             position: relative;
             margin-bottom: 12px;
-            padding-left: 20px;
+            padding-left: 22px;
             line-height: 20px;
+
             &::before {
                 content: "";
                 position: absolute;
-                width: 14px;
-                height: 14px;
-                background-size: 100%;
+                width: 16px;
+                height: 16px;
+                background-image: url("../../assets/icon-sprites.png");
                 left: 0;
                 top: 4px;
             }
 
             &:nth-child(1)::before {
-                background-image: url("../../assets/maps-and-flags.png");
+                background-position: -46px -98px;
             }
     
             &:nth-child(2)::before {
-                background-image: url("../../assets/telephone.png");
+                background-position: -82px -98px;
             }
     
             &:nth-child(3)::before {
-                background-image: url("../../assets/link.png");
+                background-position: -10px -98px;
             }
     
             &:nth-child(4)::before {
-                background-image: url("../../assets/envelope.png");
+                background-position: -98px -46px;
             }
     
             &:nth-child(5)::before {
-                background-image: url("../../assets/clock.png");
+                background-position: -98px -10px;
             }
         }
     
@@ -139,31 +140,32 @@
 }
 
 .social-links {
-    height: 20px;
+    height: 24px;
+    padding-top: 4px;
 }
 
 .social-link {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     display: block;
-    background-size: cover;
     float: left;
     margin-right: 20px;
     font-size: 0;
+    background-image: url("../../assets/icon-sprites.png");
 
     &--twitter {
-        background-image: url("../../assets/twitter.png");
+        background-position: -54px -54px;
     }
 
     &--facebook {
-        background-image: url("../../assets/facebook.png");
+        background-position: -10px -10px;
     }
 
     &--instagram {
-        background-image: url("../../assets/instagram.png");
+        background-position: -10px -54px;
     }
 
     &--google {
-        background-image: url("../../assets/google-plus.png");
+        background-position: -54px -10px;
     }
 }

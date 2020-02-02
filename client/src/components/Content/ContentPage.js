@@ -70,7 +70,7 @@ function ContentPage(props) {
                     }
                     setUserRating(data.rating);
                 })
-                .catch(err => console.log(err));
+                .catch(err => setIsError(true));
         };
 
         if (isLoggedIn) {
@@ -100,7 +100,6 @@ function ContentPage(props) {
             })
             .catch(err => setIsError(true));
     };
-
 
     return (
         <div className="content__item">
@@ -138,6 +137,8 @@ function ContentPage(props) {
                     <p className="rating__votes">Votes: <span>{data.rating_count}</span></p>
                 </div>
                 <p className="content__description">{data.description}</p>
+                
+                {userRating === 0 ? 
                     <form onSubmit={submitRating}>
                         <select value={rating} className="select-rating" onChange={handleRatingChange}>
                             <option value="" disabled hidden></option>
@@ -153,7 +154,8 @@ function ContentPage(props) {
                             <option value="10">10</option>
                         </select>
                         <button type="submit" className="vote-btn" disabled={voted}>Click to rate</button>
-                    </form>
+                    </form> : null}
+
                 {isError ? <p className="vote-message--error">Something went wrong ...</p> : null}
                 {voted ? <p className="vote-message--success">Thanks! We got your vote.</p> : null}
 

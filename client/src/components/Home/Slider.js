@@ -26,9 +26,9 @@ function Slider() {
         const target = event.target;
 
         if (target.classList.contains("slide-prev")) {
-            setSlideIndex(slideIndex - 1)
+            setSlideIndex(prevIndex => prevIndex - 1);
         } else if (target.classList.contains("slide-next")) {
-            setSlideIndex(slideIndex + 1)
+            setSlideIndex(prevIndex => prevIndex + 1);
         } else if (target.classList.contains("slide-indicator")) {
             setSlideIndex(parseInt(target.getAttribute("data-slide-to")));
         }
@@ -37,8 +37,7 @@ function Slider() {
     useEffect(() => {
         if (slideIndex > images.length) {
             setSlideIndex(1);
-        }
-        if (slideIndex < 1) {
+        } else if (slideIndex < 1) {
             setSlideIndex(images.length);
         }
     }, [slideIndex, images.length]);
@@ -54,7 +53,7 @@ function Slider() {
     }, []);
 
     return (
-        <div className="slideshow-container" onClick={(event) => handleSlideClick(event)}>
+        <div className="slideshow-container" onClick={handleSlideClick}>
             <div className="slides-container" style={{height: height + "px"}}>
                 {images.map((item) => (
                     <div key={item.id} className={slideIndex === item.id ? "slide active" : "slide"}>
