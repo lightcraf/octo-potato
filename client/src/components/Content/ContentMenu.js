@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./ContentMenu.scss";
 
 function ContentMenu(props) {
@@ -132,13 +133,13 @@ function ContentMenu(props) {
                     <option value="default" disabled hidden></option>
                     <option value="title-asc">Title (A - Z)</option>
                     <option value="title-desc">Title (Z - A)</option>
-                    <option value="rating-asc">Rating (Low > High)</option>
-                    <option value="rating-desc">Rating (High > Low)</option>
-                    <option value="votes-asc">Votes (Low > High)</option>
-                    <option value="votes-desc">Votes (High > Low)</option>
+                    <option value="rating-asc">Rating (Low &gt; High)</option>
+                    <option value="rating-desc">Rating (High &gt; Low)</option>
+                    <option value="votes-asc">Votes (Low &gt; High)</option>
+                    <option value="votes-desc">Votes (High &gt; Low)</option>
                 </select>
             </div>
-            <a href="/add" className="add-content-link">Add new</a>
+            <Link to="/add" className="add-content-link">Add new</Link>
         </aside>
     );
 }

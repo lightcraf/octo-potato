@@ -1,41 +1,35 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useEffect, Fragment } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./ContentList.scss";
 import Pagination from "./Pagination";
 
 function ContentList(props) {
     const location = useLocation();
-    const [pageList, setPageList] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
     const pageSize = 3;
+    let page = 1;
 
     useEffect(() => {
         document.title = "Content";
     }, []);
 
     useEffect(() => {
-        let page = 1;
-
-        if (location.hash !== "") {
-            page = Math.floor(Number(location.hash.split("#page")[1]));
-        }
-
-        if (page < 1) {
-            page = 1;
-        }
-
-        let startIndex = (page - 1) * pageSize;
-        let endIndex = startIndex + pageSize;
-
-        setPageList(props.content.slice(startIndex, endIndex));
-        setCurrentPage(page);
-    }, [props.content, location.hash]);
-
-    useEffect(() => {
         window.location.hash = "";
-        setTotalPages(Math.ceil(props.content.length / pageSize));
     }, [props.content]);
+
+    const totalPages = Math.ceil(props.content.length / pageSize);
+
+    if (location.hash !== "") {
+        page = Math.floor(Number(location.hash.split("#page")[1]));
+    }
+
+    if (page < 1) {
+        page = 1;
+    }
+
+    let startIndex = (page - 1) * pageSize;
+    let endIndex = startIndex + pageSize;
+
+    const pageList = props.content.slice(startIndex, endIndex);
 
     if (pageList.length === 0) {
         return <p>Nothing here matches your search</p>;
@@ -68,7 +62,7 @@ function ContentList(props) {
                     </article>
                 )}
                 <Pagination
-                    currentPage={currentPage}
+                    currentPage={page}
                     totalPages={totalPages} />
             </Fragment>
         );
