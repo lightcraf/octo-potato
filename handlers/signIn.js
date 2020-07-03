@@ -1,9 +1,10 @@
 const sqlite3 = require("sqlite3").verbose();
-const DB_PATH = "public/db/content.db";
-const db = new sqlite3.Database(DB_PATH);
+const config = require("config");
+const dbConfig = config.get("dbConfig");
+const db = new sqlite3.Database(`${dbConfig.dbPath}/${dbConfig.dbName}`);
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
-const SECRET = "abigsecret";
+const jwtSecret = config.get("jwtSecret");
 
 exports.signInProcessPost = function (req, res) {
     const username = req.body.username;
@@ -24,7 +25,7 @@ exports.signInProcessPost = function (req, res) {
                             userId: row.id,
                             username: username
                         };
-                        const token = jwt.sign(payload, SECRET, { expiresIn: 1000*60*60 });
+                        const token = jwt.sign(payload, jwtSecret, { expiresIn: 1000*60*60 });
                         res.cookie("token", token, { expires: new Date(Date.now() + 1000*60*60), httpOnly: true });
                         return res.send({ status: 200 });
                     } else {

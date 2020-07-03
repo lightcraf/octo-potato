@@ -4,8 +4,8 @@ const port = process.env.PORT || 5000;
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
-
-const SECRET = "abigsecret";
+const config = require("config");
+const jwtSecret = config.get("jwtSecret");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -16,7 +16,7 @@ app.use(function (req, res, next) {
     const token = req.cookies.token;
 
     if (token) {
-        jwt.verify(token, SECRET, function (err, decoded) {
+        jwt.verify(token, jwtSecret, function (err, decoded) {
             if (err) {
                 res.locals.isLoggedIn = false;
                 next();
